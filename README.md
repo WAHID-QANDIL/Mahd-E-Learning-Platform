@@ -1,7 +1,7 @@
 # Mahd-E-Learning-Platform
 
 
-# main (or master): The stable, production-ready branch containing thoroughly tested code.
+** main (or master): The stable, production-ready branch containing thoroughly tested code.
 # develop: An integration branch for ongoing development, where completed features are merged before release.
 # feature/: Branches dedicated to individual features (e.g., feature/login-screen), allowing isolated development without affecting other parts of the codebase.
 # release/: Branches for preparing new releases (e.g., release/v1.0), used for final testing and minor bug fixes before going live.
