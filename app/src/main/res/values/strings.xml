@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mahd-E-Learning-Platform</string>
+    <string name="onboarding">OnBoarding</string>
+    <string name="learn_anything_anywhere">Learn Anything, Anywhere</string>
+    <string name="discover_thousands_of_courses_and_expand_your_knowledge_with_our_interactive_learning_platform">Discover thousands of courses and expand your knowledge with our interactive learning platform</string>
+    <string name="finish">Finish</string>
 </resources>
