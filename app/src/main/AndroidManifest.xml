@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MahdELearningPlatform"
         tools:targetApi="31">
         <activity
-            android:name=".login_register_feature.presentation.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MahdELearningPlatform">
             <intent-filter>
