@@ -83,6 +83,9 @@ dependencies {
     //Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+//    implementation(libs.androidx.hilt.navigation)
+//    implementation(libs.androidx.hilt.lifecycle.viewmodel)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //Data store
     implementation(libs.androidx.datastore.preferences)
