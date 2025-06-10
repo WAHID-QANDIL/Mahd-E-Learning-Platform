@@ -4,4 +4,12 @@
     <string name="learn_anything_anywhere">Learn Anything, Anywhere</string>
     <string name="discover_thousands_of_courses_and_expand_your_knowledge_with_our_interactive_learning_platform">Discover thousands of courses and expand your knowledge with our interactive learning platform</string>
     <string name="finish">Finish</string>
+    <string name="signin">SignIn</string>
+    <string name="login_title">Enter your credentials to access your account</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="password">Password</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_in_to_continue_or_create_a_new_account">Sign in to continue or create a new account</string>
 </resources>

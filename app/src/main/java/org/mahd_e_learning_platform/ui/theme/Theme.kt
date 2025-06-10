@@ -20,7 +20,7 @@ fun MahdELearningPlatformTheme(
     val colors = Colors(
         primary = Color(0xFF01FE84),
         secondary = Color(0xFF01F37E),
-        background = if (isDark) Color(0xFF1E1E1E) else Color(0XFFFFFFFF),
+        background = if (isDark) Color(0xFF0E0D0D) else Color(0XFFFFFFFF),
         onBackground = Color(0XFF0296E5),
         bottomSheetColor = if (isDark) Color(0xFF1E1E1E) else Color(0XFFFFFFFF),
         bottomIconColor = Color(0XFF67686D),
@@ -28,6 +28,9 @@ fun MahdELearningPlatformTheme(
         text = Color(0XFFFFFFFF),
         subText = Color(0XFF67686D),
         error = Color(0xFFFF0000),
+        white = Color(0XFFFFFFFF),
+        black = Color(0xFF000000),
+        textFieldIndicatorColor = Color(0xFFA8A6A6)
 
     )
 
@@ -43,7 +46,7 @@ fun MahdELearningPlatformTheme(
             TextStyle(
                 fontFamily = FontFamily.Default,
                 fontWeight = FontWeight.W700,
-                fontSize = 16.sp,
+                fontSize = 22.sp,
                 lineHeight = 18.75.sp
             ),
         titleMedium =
@@ -115,7 +118,7 @@ object MahdELearningPlatformTheme {
     val shapes: Shapes
         @Composable
         get() = LocalShapes.current
-    val typography: org.mahd_e_learning_platform.ui.theme.Typography
+    val typography: Typography
         @Composable
         get() = LOCAL_TYPOGRAPHY.current
     val dimin: Dimin
