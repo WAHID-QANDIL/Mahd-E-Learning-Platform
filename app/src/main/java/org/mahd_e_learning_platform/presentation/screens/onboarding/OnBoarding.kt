@@ -52,7 +52,7 @@ fun OnBoarding(modifier: Modifier = Modifier) {
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(16.dp)
+                .padding(MahdELearningPlatformTheme.dimin.mediumPadding)
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -62,7 +62,7 @@ fun OnBoarding(modifier: Modifier = Modifier) {
                 HorizontalPagerIndicator(pagerState = pagerState)
                 FinishButton(
                     pagerState = pagerState,
-                    modifier = Modifier.fillMaxWidth(fraction = .8f)
+                    modifier = Modifier.fillMaxWidth(fraction = MahdELearningPlatformTheme.dimin.largeFraction)
                 ) {
                     //TODO
                 }
@@ -95,7 +95,7 @@ fun OnBoardingScreenContent(
     ) {
 
         Column(
-            modifier = modifier.padding(16.dp),
+            modifier = modifier.padding(MahdELearningPlatformTheme.dimin.mediumPadding),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -105,17 +105,17 @@ fun OnBoardingScreenContent(
                     R.string.onboarding
                 ),
                 modifier = Modifier
-                    .fillMaxWidth(fraction = .8f)
+                    .fillMaxWidth(fraction = MahdELearningPlatformTheme.dimin.largeFraction)
                     .height(onBoardingImagehight)
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
 
             Text(
                 onBoarding.title,
                 fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                 color = Color.White
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
             Text(
                 onBoarding.description,
                 style = MahdELearningPlatformTheme.typography.bodySmall,

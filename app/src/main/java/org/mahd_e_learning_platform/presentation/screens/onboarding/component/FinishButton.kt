@@ -26,7 +26,7 @@ fun FinishButton(
         Button(
             onClick = onClick,
             modifier = modifier
-                .fillMaxWidth(fraction = .7f)
+                .fillMaxWidth(fraction = MahdELearningPlatformTheme.dimin.largeFraction)
                 .statusBarsPadding(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MahdELearningPlatformTheme.colors.text,
