@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.dp
 @Immutable
 data class Dimin(
     val smallPadding: Dp,
+    val extraSmallPadding: Dp,
     val mediumPadding: Dp,
     val largePadding: Dp,
     val smallFraction: Float,
@@ -17,6 +18,7 @@ data class Dimin(
 
 val LOCAL_DIMIN = staticCompositionLocalOf {
     Dimin(
+        extraSmallPadding = 0.dp,
         smallPadding = 0.dp,
         mediumPadding = 0.dp,
         largePadding = 0.dp,
