@@ -125,7 +125,7 @@ fun SignInCard(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(MahdELearningPlatformTheme.dimin.mediumPadding),
+                .padding(MahdELearningPlatformTheme.dimin.largePadding),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
