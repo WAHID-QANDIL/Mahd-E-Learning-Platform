@@ -53,7 +53,7 @@ fun WelcomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
 
         ) {
-        stickyHeader {
+        item {
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.Center,
