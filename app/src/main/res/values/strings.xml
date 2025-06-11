@@ -22,4 +22,8 @@
     <string name="doe">Doe</string>
     <string name="last_name">Last Name</string>
     <string name="join_us_today_and_get_started">Join us today and get started</string>
+    <string name="student_image">Student Image</string>
+    <string name="ready_to_learn">Ready to learn?</string>
+    <string name="search">Search</string>
+    <string name="notifications">Notifications</string>
 </resources>
