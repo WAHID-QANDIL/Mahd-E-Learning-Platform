@@ -48,102 +48,105 @@ fun HomeTopAppBar(
 
     ) {
 
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
+    MahdELearningPlatformTheme {
         Row(
+            modifier = modifier,
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.weight(2f)
         ) {
-            Box(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .size(40.dp)
-                    .background(
-                        color = Color.Gray,
-                        shape = CircleShape
-                    )
-                    .clickable(onClick = onAvatarClicked)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.weight(2f)
             ) {
-                AsyncImage(
-                    modifier = Modifier.fillMaxWidth(),
-                    model = ImageRequest.Builder(context = LocalContext.current)
-                        .data(avatarUrl)
-                        .build(),
-                    contentDescription = stringResource(R.string.student_image),
-                    contentScale = ContentScale.Crop,
-                    placeholder = painterResource(R.drawable.app_logo),
+                Box(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(40.dp)
+                        .background(
+                            color = Color.Gray,
+                            shape = CircleShape
+                        )
+                        .clickable(onClick = onAvatarClicked)
+                ) {
+                    AsyncImage(
+                        modifier = Modifier.fillMaxWidth(),
+                        model = ImageRequest.Builder(context = LocalContext.current)
+                            .data(avatarUrl)
+                            .build(),
+                        contentDescription = stringResource(R.string.student_image),
+                        contentScale = ContentScale.Crop,
+                        placeholder = painterResource(R.drawable.app_logo),
 
+                        )
+                }
+                Spacer(modifier = Modifier.width(5.dp))
+
+                Column {
+                    Text(
+                        "Hi, $studentName",
+                        style = MahdELearningPlatformTheme.typography.titleLarge,
+                        color = MahdELearningPlatformTheme.colors.black,
+                        modifier = Modifier.fillMaxWidth()
                     )
+                    Text(
+                        text = stringResource(R.string.ready_to_learn),
+                        style = MahdELearningPlatformTheme.typography.titleMedium,
+                        color = MahdELearningPlatformTheme.colors.subText,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
-            Spacer(modifier = Modifier.width(5.dp))
-
-            Column {
-                Text(
-                    "Hi, $studentName",
-                    style = MahdELearningPlatformTheme.typography.titleLarge,
-                    color = MahdELearningPlatformTheme.colors.black,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    text = stringResource(R.string.ready_to_learn),
-                    style = MahdELearningPlatformTheme.typography.titleMedium,
-                    color = MahdELearningPlatformTheme.colors.subText,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        }
-        Row(
-            modifier = Modifier.weight(2f),
-            horizontalArrangement = Arrangement.End
-        ) {
-            Box(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .background(
-                        color = Color.Gray.copy(alpha = 0.15f),
-                    )
-                    .shadow(
-                        elevation = 4.dp,
-                        shape = CircleShape,
-                        spotColor = Color.Gray.copy(alpha = 0.3f)
-                    )
-                    .padding(vertical = 8.dp)
-                    .clickable(onClick = onSearch),
-
-                )
-            {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = stringResource(R.string.search),
-                    modifier = Modifier.padding(MahdELearningPlatformTheme.dimin.mediumPadding)
-                )
-
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Box(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .background(
-                        color = Color.Gray.copy(alpha = 0.15f),
-                        shape = RoundedCornerShape(MahdELearningPlatformTheme.dimin.smallPadding)
-                    )
-                    .shadow(
-                        elevation = 4.dp,
-                        shape = CircleShape,
-                        spotColor = Color.Gray.copy(alpha = 0.3f)
-                    )
-                    .padding(vertical = 8.dp)
-                    .clickable(onClick = onClickNotifications)
-
+            Row(
+                //            modifier = Modifier.weight(2f),
+                horizontalArrangement = Arrangement.End
             ) {
-                Icon(
-                    imageVector = Icons.Default.Notifications,
-                    contentDescription = stringResource(R.string.notifications),
-                    modifier = Modifier.padding(MahdELearningPlatformTheme.dimin.smallPadding)
-                )
+                Box(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(
+                            color = Color.Gray.copy(alpha = 0.15f),
+                        )
+                        .shadow(
+                            elevation = 4.dp,
+                            shape = CircleShape,
+                            spotColor = Color.Gray.copy(alpha = 0.3f)
+                        )
+                        .padding(vertical = 8.dp)
+                        .clickable(onClick = onSearch),
+
+                    )
+                {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = stringResource(R.string.search),
+                        modifier = Modifier.padding(MahdELearningPlatformTheme.dimin.mediumPadding)
+                    )
+
+                }
+                Spacer(modifier = Modifier.width(5.dp))
+                Box(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(
+                            color = Color.Gray.copy(alpha = 0.15f),
+                            shape = RoundedCornerShape(MahdELearningPlatformTheme.dimin.smallPadding)
+                        )
+                        .shadow(
+                            elevation = 4.dp,
+                            shape = CircleShape,
+                            spotColor = Color.Gray.copy(alpha = 0.3f)
+                        )
+                        .padding(vertical = 8.dp)
+                        .clickable(onClick = onClickNotifications)
+
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Notifications,
+                        contentDescription = stringResource(R.string.notifications),
+                        modifier = Modifier.padding(MahdELearningPlatformTheme.dimin.mediumPadding)
+
+                    )
+                }
             }
         }
     }
@@ -154,7 +157,7 @@ fun HomeTopAppBar(
 private fun HomeTopAppBarPreview() {
 
     HomeTopAppBar(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier,
         avatarUrl = "https://picsum.photos/200",
         onSearch = { },
         studentName = "Sara",
