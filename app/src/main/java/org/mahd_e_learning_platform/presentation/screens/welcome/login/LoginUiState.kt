@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.login
+package org.mahd_e_learning_platform.presentation.screens.welcome.login
 
 data class LoginUiState(
     val email: String = "",

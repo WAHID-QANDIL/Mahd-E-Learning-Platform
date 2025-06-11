@@ -1,7 +1,6 @@
-package org.mahd_e_learning_platform.presentation.screens.login
+package org.mahd_e_learning_platform.presentation.screens.welcome.login
 
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
@@ -32,6 +31,13 @@ class LoginViewModel : ViewModel() {
                 isRemembered = value
             )
         }
+    }
+
+    fun onForgetPassword(){
+        //TODO
+    }
+    fun onSignIn(){
+        //TODO
     }
 
 

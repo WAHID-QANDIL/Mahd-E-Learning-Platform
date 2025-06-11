@@ -93,6 +93,7 @@ fun MahdELearningPlatformTheme(
             small = RoundedCornerShape(8.dp)
         )
     val dimin = Dimin(
+        extraSmallPadding = 8.dp,
         smallPadding = 8.dp,
         mediumPadding = 16.dp,
         largePadding = 24.dp,
