@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import org.mahd_e_learning_platform.R
+import org.mahd_e_learning_platform.presentation.screens.home.HomeScreen
 import org.mahd_e_learning_platform.presentation.screens.welcome.WelcomeScreen
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 @AndroidEntryPoint
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             MahdELearningPlatformTheme {
-                WelcomeScreen(modifier = Modifier.fillMaxSize().systemBarsPadding())
+                HomeScreen(modifier = Modifier.fillMaxSize().systemBarsPadding())
             }
         }
     }

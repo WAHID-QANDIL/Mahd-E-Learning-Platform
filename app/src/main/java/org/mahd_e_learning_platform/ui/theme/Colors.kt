@@ -16,7 +16,12 @@ data class Colors(
     val error: Color,
     val white: Color,
     val black: Color,
-    val textFieldIndicatorColor: Color
+    val textFieldIndicatorColor: Color,
+    val purple: Color,
+    val blue: Color,
+    val green: Color,
+    val lightRed: Color,
+
 
 )
 val LOCAL_COLORS = staticCompositionLocalOf {
@@ -34,5 +39,9 @@ val LOCAL_COLORS = staticCompositionLocalOf {
         white = Color.Unspecified,
         black = Color.Unspecified,
         textFieldIndicatorColor = Color.Unspecified,
+        purple = Color.Unspecified,
+        blue = Color.Unspecified,
+        lightRed = Color.Unspecified,
+        green = Color.Unspecified,
     )
 }
