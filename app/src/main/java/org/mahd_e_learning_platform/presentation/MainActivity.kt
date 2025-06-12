@@ -8,10 +8,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
+import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.presentation.screens.welcome.forgot_password.ForgotPasswordScreen
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
@@ -36,8 +35,8 @@ class MainActivity : ComponentActivity() {
               
                 ForgotPasswordScreen(
                     modifier = Modifier.fillMaxSize().systemBarsPadding(),
-                    onBackToLogin = { /* Navigation logic will go here */ },
-                    onBackClicked = { /* Navigation logic will go here */ }
+//                    onBackToLogin = { /* Navigation logic will go here */ },
+//                    onBackClicked = { /* Navigation logic will go here */ }
                 )
             }
         }
