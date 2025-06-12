@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.mahd_e_learning_platform.presentation.screens.home.component.CategoriesSection
 import org.mahd_e_learning_platform.presentation.screens.home.component.HomeCurrentCourse
@@ -57,4 +58,10 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
 
     }
+}
+
+@Preview
+@Composable
+private fun HomeScreenPreview() {
+    HomeScreen()
 }
