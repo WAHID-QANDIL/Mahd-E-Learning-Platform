@@ -28,4 +28,15 @@
     <string name="back_to_login">"Back to Login "</string>
     <string name="contact_support_prompt">"Still having trouble? "</string>
     <string name="contact_support">"Contact Support "</string>
+    <string name="student_image">Student Image</string>
+    <string name="ready_to_learn">Ready to learn?</string>
+    <string name="search">Search</string>
+    <string name="notifications">Notifications</string>
+    <string name="discover_new_skills_and_advance_your_career">Discover new skills and advance your career</string>
+    <string name="explore_courses">Explore Courses</string>
+    <string name="programming">Programming</string>
+    <string name="design">Design</string>
+    <string name="photography">Photography</string>
+    <string name="business">Business</string>
+    <string name="categories">Categories</string>
 </resources>
