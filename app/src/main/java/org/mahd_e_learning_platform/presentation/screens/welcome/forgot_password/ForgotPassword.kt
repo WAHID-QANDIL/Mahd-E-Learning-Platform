@@ -42,9 +42,6 @@ import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 fun ForgotPasswordScreen(
     modifier: Modifier = Modifier,
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
-    // These lambdas will be used for navigation later
-//    onBackToLogin: () -> Unit,
-//    onBackClicked: () -> Unit
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -53,9 +50,11 @@ fun ForgotPasswordScreen(
         uiState = uiState.value,
         onEmailTextChange = { viewModel.onEmailTextChanged(it) },
         onSendResetLink = { viewModel.onSendResetLink() },
-        onBackToLogin = {viewModel.onBackToLogin()},
+        onBackToLogin = { viewModel.onBackToLogin() },
+        onContactSupport = { viewModel.onContactSupport() }
     )
 }
+
 @Composable
 fun ForgotPasswordCard(
     modifier: Modifier = Modifier,
@@ -63,11 +62,12 @@ fun ForgotPasswordCard(
     onEmailTextChange: (String) -> Unit,
     onSendResetLink: () -> Unit,
     onBackToLogin: () -> Unit,
+    onContactSupport: () -> Unit,
 ) {
     OutlinedCard(
         modifier = modifier,
-        shape = RoundedCornerShape(CornerSize(MahdELearningPlatformTheme.dimin.mediumPadding)),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+//        shape = RoundedCornerShape(CornerSize(MahdELearningPlatformTheme.dimin.mediumPadding)),
+//        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(containerColor = MahdELearningPlatformTheme.colors.background),
     ) {
         Column(
@@ -178,7 +178,7 @@ fun ForgotPasswordCard(
             )
             Text(
                 text = stringResource(R.string.contact_support),
-                modifier = Modifier.clickable { /* TODO: Handle contact support click */ },
+                modifier = Modifier.clickable(onClick = onContactSupport),
                 style = MahdELearningPlatformTheme.typography.bodyMedium,
                 color = MahdELearningPlatformTheme.colors.primary
             )

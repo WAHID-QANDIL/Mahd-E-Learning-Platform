@@ -24,4 +24,7 @@ class ForgotPasswordViewModel: ViewModel() {
     fun onBackToLogin() {
         //TODO: Handle navigation back to login
     }
+    fun onContactSupport() {
+        //TODO: Handle navigation back to login
+    }
 }
