@@ -39,4 +39,8 @@
     <string name="photography">Photography</string>
     <string name="business">Business</string>
     <string name="categories">Categories</string>
+    <string name="course_image">Course Image</string>
+    <string name="star">Star</string>
+    <string name="recommended_courses">Recommended Courses</string>
+    <string name="view_all">View All</string>
 </resources>

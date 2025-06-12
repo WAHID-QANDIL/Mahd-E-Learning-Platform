@@ -21,9 +21,10 @@ data class Colors(
     val blue: Color,
     val green: Color,
     val lightRed: Color,
+    val yalow: Color,
 
 
-)
+    )
 val LOCAL_COLORS = staticCompositionLocalOf {
     Colors(
         primary = Color.Unspecified,
@@ -43,5 +44,6 @@ val LOCAL_COLORS = staticCompositionLocalOf {
         blue = Color.Unspecified,
         lightRed = Color.Unspecified,
         green = Color.Unspecified,
+        yalow = Color.Unspecified,
     )
 }
