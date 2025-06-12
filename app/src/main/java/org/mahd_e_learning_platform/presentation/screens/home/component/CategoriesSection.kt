@@ -40,9 +40,12 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.mahd_e_learning_platform.R
@@ -91,7 +94,7 @@ fun CategoriesSection(
                         modifier = Modifier.size(homeCardDimintions.first,homeCardDimintions.second)
                     ) {
                         CategoriesSectionCard(
-                            icon = Icons.Default.Build,
+                            icon = painterResource(R.drawable.programming_logo),
                             title = stringResource(R.string.programming),
                             numberOfCourses = programmingCourses,
                             onClick = onProgrammingClick,
@@ -105,7 +108,7 @@ fun CategoriesSection(
                         modifier = Modifier.size(homeCardDimintions.first,homeCardDimintions.second)
                     ) {
                         CategoriesSectionCard(
-                            icon = Icons.Default.Star,
+                            icon = painterResource(R.drawable.design_logo),
                             title = stringResource(R.string.design),
                             numberOfCourses = designCourses,
                             onClick = onDesignClick,
@@ -119,7 +122,7 @@ fun CategoriesSection(
                         modifier = Modifier.size(homeCardDimintions.first,homeCardDimintions.second)
                     ){
                         CategoriesSectionCard(
-                            icon = Icons.Default.ShoppingCart,
+                            icon = painterResource(R.drawable.photography_logo),
                             title = stringResource(R.string.business),
                             numberOfCourses = businessCourses,
                             onClick = onBusinessClick,
@@ -133,7 +136,7 @@ fun CategoriesSection(
                         modifier = Modifier.size(homeCardDimintions.first,homeCardDimintions.second)
                     ){
                         CategoriesSectionCard(
-                            icon = Icons.Default.ThumbUp,
+                            icon = painterResource(R.drawable.business_logo),
                             title = stringResource(R.string.photography),
                             numberOfCourses = photographyCourses,
                             onClick = onPhotographyClick,
@@ -151,7 +154,7 @@ fun CategoriesSection(
 @Composable
 fun CategoriesSectionCard(
     modifier: Modifier = Modifier,
-    icon: ImageVector,
+    icon: Painter,
     title: String,
     numberOfCourses: Int,
     onClick: () -> Unit,
@@ -178,7 +181,7 @@ fun CategoriesSectionCard(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    imageVector = icon,
+                    painter = icon,
                     contentDescription = title,
                     tint = color
                 )
@@ -215,7 +218,7 @@ private fun CategoriesSectionCardPreview() {
     ){
         CategoriesSectionCard(
             modifier = Modifier,
-            icon = Icons.Default.Email,
+            icon = painterResource(R.drawable.programming_logo),
             title = "Programming",
             numberOfCourses = 29,
             onClick = { },
