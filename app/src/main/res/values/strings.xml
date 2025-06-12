@@ -22,6 +22,12 @@
     <string name="doe">Doe</string>
     <string name="last_name">Last Name</string>
     <string name="join_us_today_and_get_started">Join us today and get started</string>
+    <string name="back">back\n</string>
+    <string name="forgot_password_subtitle">"Don't worry! It happens. Please enter the email address associated with your account "</string>
+    <string name="send_reset_link">"Send Reset Link "</string>
+    <string name="back_to_login">"Back to Login "</string>
+    <string name="contact_support_prompt">"Still having trouble? "</string>
+    <string name="contact_support">"Contact Support "</string>
     <string name="student_image">Student Image</string>
     <string name="ready_to_learn">Ready to learn?</string>
     <string name="search">Search</string>
