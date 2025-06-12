@@ -43,8 +43,8 @@ fun ForgotPasswordScreen(
     modifier: Modifier = Modifier,
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
     // These lambdas will be used for navigation later
-    onBackToLogin: () -> Unit,
-    onBackClicked: () -> Unit
+//    onBackToLogin: () -> Unit,
+//    onBackClicked: () -> Unit
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -53,8 +53,7 @@ fun ForgotPasswordScreen(
         uiState = uiState.value,
         onEmailTextChange = { viewModel.onEmailTextChanged(it) },
         onSendResetLink = { viewModel.onSendResetLink() },
-        onBackToLogin = onBackToLogin,
-        onBackClicked = onBackClicked
+        onBackToLogin = {viewModel.onBackToLogin()},
     )
 }
 @Composable
@@ -64,7 +63,6 @@ fun ForgotPasswordCard(
     onEmailTextChange: (String) -> Unit,
     onSendResetLink: () -> Unit,
     onBackToLogin: () -> Unit,
-    onBackClicked: () -> Unit
 ) {
     OutlinedCard(
         modifier = modifier,
@@ -80,7 +78,7 @@ fun ForgotPasswordCard(
         ) {
             // Back Arrow
             Row(modifier = Modifier.fillMaxWidth()) {
-                IconButton(onClick = onBackClicked) {
+                IconButton(onClick = onBackToLogin) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.back)
