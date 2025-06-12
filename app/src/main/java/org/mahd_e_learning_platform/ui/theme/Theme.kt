@@ -20,7 +20,7 @@ fun MahdELearningPlatformTheme(
     val colors = Colors(
         primary = Color(0xFF01FE84),
         secondary = Color(0xFF01F37E),
-        background = if (isDark) Color(0xFF0E0D0D) else Color(0XFFFFFFFF),
+        background = if (isDark) Color(0xFF111827) else Color(0XFFFFFFFF),
         onBackground = Color(0XFF0296E5),
         bottomSheetColor = if (isDark) Color(0xFF1E1E1E) else Color(0XFFFFFFFF),
         bottomIconColor = Color(0XFF67686D),
