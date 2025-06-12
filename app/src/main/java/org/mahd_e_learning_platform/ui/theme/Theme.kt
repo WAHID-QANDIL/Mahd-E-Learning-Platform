@@ -29,7 +29,7 @@ fun MahdELearningPlatformTheme(
         subText = Color(0XFF67686D),
         error = Color(0xFFFF0000),
         white = Color(0XFFFFFFFF),
-        black = Color(0xFF000000),
+        black = if (!isSystemInDarkTheme()) Color(0xFF000000) else Color(0XFFFFFFFF) ,
         textFieldIndicatorColor = Color(0xFFA8A6A6),
         purple = Color(0xFF9333EA),
         blue = Color(0xFF2563EB),
