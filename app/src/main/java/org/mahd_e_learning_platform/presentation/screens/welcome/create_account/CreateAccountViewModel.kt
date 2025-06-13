@@ -2,12 +2,13 @@ package org.mahd_e_learning_platform.presentation.screens.welcome.create_account
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class CreateAccountViewModel: ViewModel() {
 
     private val _uiState = MutableStateFlow(CreateAccountUiState())
-    val uiState = _uiState
+    val uiState = _uiState.asStateFlow()
 
 
 
