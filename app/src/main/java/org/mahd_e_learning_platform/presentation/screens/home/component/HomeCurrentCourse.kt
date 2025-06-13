@@ -46,7 +46,7 @@ fun HomeCurrentCourse(
             modifier = modifier
                 .fillMaxWidth()
                 .background(
-                    brush = Brush.verticalGradient(
+                    brush = Brush.horizontalGradient(
                         colors = listOf(
                             MahdELearningPlatformTheme.colors.primary,
                             MahdELearningPlatformTheme.colors.white
@@ -69,13 +69,13 @@ fun HomeCurrentCourse(
                 color = Color.Gray
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
 
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(MahdELearningPlatformTheme.shapes.medium),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = MahdELearningPlatformTheme.colors.background),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
                 Row(

@@ -7,4 +7,5 @@ data class Course(
     val enrollments: Int,
     val rate: Float,
     val cost: Int,
+    val progress: Float = 0f,
 )
