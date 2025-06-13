@@ -35,6 +35,8 @@ fun MahdELearningPlatformTheme(
         blue = Color(0xFF2563EB),
         green = Color(0xFF16A34A),
         lightRed = Color(0xFFEA580C),
+        yalow = Color(0xFFFACC15),
+
 
     )
 

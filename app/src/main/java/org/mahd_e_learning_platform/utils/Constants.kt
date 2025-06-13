@@ -5,3 +5,4 @@ import androidx.compose.ui.unit.dp
 
 val onBoardingImagehight = 250.dp
 val homeCardDimintions = Pair<Dp, Dp>(210.dp,150.dp)
+val homeCourseImageCardSize = Pair<Dp, Dp>(80.dp,80.dp)
