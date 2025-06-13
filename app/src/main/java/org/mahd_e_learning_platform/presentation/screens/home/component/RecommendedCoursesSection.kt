@@ -16,7 +16,6 @@ import androidx.compose.ui.res.stringResource
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.domain.model.Course
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
-import java.nio.file.WatchEvent
 
 @Composable
 fun RecommendedCoursesSection(
@@ -43,7 +42,8 @@ fun RecommendedCoursesSection(
             Text(
                 text = stringResource(R.string.view_all),
                 style = MahdELearningPlatformTheme.typography.titleMedium,
-                color = MahdELearningPlatformTheme.colors.primary
+                color = MahdELearningPlatformTheme.colors.primary,
+                modifier = Modifier.clickable(onClick = onViewAll)
             )
 
         }
