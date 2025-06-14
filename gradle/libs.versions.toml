@@ -6,7 +6,7 @@ datastorePreferences    = "1.1.3"
 hiltAndroidCompiler     = "2.51.1"
 #hiltLifecycleViewmodel  = "1.0.0"
 hiltNavigation          = "1.3.0-alpha01"
-kotlin                  = "2.1.0"
+kotlin                  = "2.0.21"
 coreKtx                 = "1.15.0"
 junit                   = "4.13.2"
 junitVersion            = "1.2.1"
@@ -16,7 +16,7 @@ activityCompose         = "1.10.1"
 composeBom              = "2025.02.00"
 retrofit                = "2.9.0"
 roomCompiler            = "2.6.1"
-ksp                     = "2.0.21-1.0.27"
+ksp                     = "2.0.21-1.0.28"
 
 [libraries]
 androidx-core-splashscreen                      = { module = "androidx.core:core-splashscreen",                 version.ref = "coreSplashscreen" }
