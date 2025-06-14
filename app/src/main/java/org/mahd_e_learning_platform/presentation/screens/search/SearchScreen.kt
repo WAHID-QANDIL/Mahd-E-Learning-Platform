@@ -3,8 +3,6 @@ package org.mahd_e_learning_platform.presentation.screens.search
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,7 +15,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.mahd_e_learning_platform.presentation.screens.home.component.BottomHomeNavBar
 import org.mahd_e_learning_platform.presentation.screens.search.components.CourseItem
 import org.mahd_e_learning_platform.presentation.screens.search.components.SearchBar
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
