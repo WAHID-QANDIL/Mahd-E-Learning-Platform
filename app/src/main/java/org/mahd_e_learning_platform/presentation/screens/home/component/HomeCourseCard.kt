@@ -153,6 +153,12 @@ private fun HomeCourseCardPreview() {
             enrollments = 2,
             rate = 3.4f,
             cost = 33,
+            courseId = TODO(),
+            progress = TODO(),
+            educator = TODO(),
+            level = TODO(),
+            sections = TODO(),
+            category = TODO(),
         ),
     )
 

@@ -12,7 +12,7 @@ data class Course(
     val educator: String,
     val level: String,
     val sections: List<Any>,
-    val category: List<String>,
+    val category: String,
 
 
     )
