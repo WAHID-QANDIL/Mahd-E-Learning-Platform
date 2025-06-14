@@ -2,13 +2,14 @@ package org.mahd_e_learning_platform.presentation.screens.welcome.login
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 
 class LoginViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
-    val uiState = _uiState
+    val uiState = _uiState.asStateFlow()
 
 
     fun onEmailTextChanged(value: String) {

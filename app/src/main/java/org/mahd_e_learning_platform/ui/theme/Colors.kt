@@ -2,6 +2,8 @@ package org.mahd_e_learning_platform.ui.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 data class Colors(
     val primary: Color,
@@ -22,8 +24,6 @@ data class Colors(
     val green: Color,
     val lightRed: Color,
     val yalow: Color,
-
-
     )
 val LOCAL_COLORS = staticCompositionLocalOf {
     Colors(
