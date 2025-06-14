@@ -18,10 +18,10 @@ data class Dimin(
 
 val LOCAL_DIMIN = staticCompositionLocalOf {
     Dimin(
-        extraSmallPadding = 0.dp,
+        extraSmallPadding = 32.dp,
         smallPadding = 0.dp,
         mediumPadding = 0.dp,
-        largePadding = 0.dp,
+        largePadding = 64.dp,
         smallFraction = 0f,
         mediumFraction = 0f,
         largeFraction = 0f,
