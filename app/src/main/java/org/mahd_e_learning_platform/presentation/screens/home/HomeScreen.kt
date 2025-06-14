@@ -180,12 +180,12 @@ fun HomeScreen(
                 }
 
             }
-            BottomHomeNavBar(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .height(homeBottomNavBarHeight)
-            )
+//            BottomHomeNavBar(
+//                modifier = Modifier
+//                    .align(Alignment.BottomCenter)
+//                    .fillMaxWidth()
+//                    .height(homeBottomNavBarHeight)
+//            )
         }
 
     }

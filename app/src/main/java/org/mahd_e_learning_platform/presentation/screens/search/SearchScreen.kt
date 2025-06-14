@@ -109,14 +109,6 @@ fun SearchScreen(
                     }
                 }
             }
-
-            // Bottom Navigation Bar
-            BottomHomeNavBar(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .height(homeBottomNavBarHeight)
-            )
         }
     }
 }
