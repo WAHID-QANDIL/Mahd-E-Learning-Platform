@@ -8,11 +8,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.presentation.screens.home.HomeScreen
+import org.mahd_e_learning_platform.presentation.screens.payment.EnrollmentSuccessScreen
 import org.mahd_e_learning_platform.presentation.screens.welcome.forgot_password.ForgotPasswordScreen
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
@@ -41,12 +44,18 @@ class MainActivity : ComponentActivity() {
 ////                    onBackClicked = { /* Navigation logic will go here */ }
 //                )
 
-                HomeScreen(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .systemBarsPadding()
-                        .background(MahdELearningPlatformTheme.colors.background)
-                )
+//                HomeScreen(
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .systemBarsPadding()
+//                        .background(MahdELearningPlatformTheme.colors.background)
+//                )
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    EnrollmentSuccessScreen()
+                }
             }
         }
     }
