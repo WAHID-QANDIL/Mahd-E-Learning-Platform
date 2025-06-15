@@ -1,14 +1,9 @@
-package org.mahd_e_learning_platform.presentation.screens.home.component
+package org.mahd_e_learning_platform.presentation.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -22,7 +17,7 @@ import androidx.compose.ui.Modifier
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @Composable
-fun BottomHomeNavBar(modifier: Modifier = Modifier) {
+fun AppBottomHomeNavBar(modifier: Modifier = Modifier) {
     MahdELearningPlatformTheme {
         var selected by rememberSaveable { mutableIntStateOf(0) }
         Row(modifier = modifier.background(MahdELearningPlatformTheme.colors.background)) {
@@ -33,10 +28,10 @@ fun BottomHomeNavBar(modifier: Modifier = Modifier) {
                 containerColor = MahdELearningPlatformTheme.colors.background
             ) {
                 listOf(
-                    BottomNavItem.Home,
-                    BottomNavItem.Search,
-                    BottomNavItem.Courses,
-                    BottomNavItem.Profile,
+                    AppBottomNavItem.Home,
+                    AppBottomNavItem.Search,
+                    AppBottomNavItem.Courses,
+                    AppBottomNavItem.Profile,
                 ).forEachIndexed { index, item ->
                     NavigationBarItem(
                         icon = {
