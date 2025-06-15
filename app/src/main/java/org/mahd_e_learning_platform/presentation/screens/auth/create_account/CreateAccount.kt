@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.welcome.create_account
+package org.mahd_e_learning_platform.presentation.screens.auth.create_account
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

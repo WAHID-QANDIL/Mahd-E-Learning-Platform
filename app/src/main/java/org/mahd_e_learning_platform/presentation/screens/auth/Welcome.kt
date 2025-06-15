@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.welcome
+package org.mahd_e_learning_platform.presentation.screens.auth
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.mahd_e_learning_platform.R
-import org.mahd_e_learning_platform.presentation.screens.welcome.create_account.CreateAccountCard
-import org.mahd_e_learning_platform.presentation.screens.welcome.create_account.CreateAccountViewModel
-import org.mahd_e_learning_platform.presentation.screens.welcome.login.LoginViewModel
-import org.mahd_e_learning_platform.presentation.screens.welcome.login.SignInCard
+import org.mahd_e_learning_platform.presentation.screens.auth.create_account.CreateAccountCard
+import org.mahd_e_learning_platform.presentation.screens.auth.create_account.CreateAccountViewModel
+import org.mahd_e_learning_platform.presentation.screens.auth.login.LoginViewModel
+import org.mahd_e_learning_platform.presentation.screens.auth.login.SignInCard
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @OptIn(ExperimentalFoundationApi::class)

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.serialization)
 
 }
 
@@ -39,6 +40,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 kotlin {
@@ -80,7 +82,8 @@ dependencies {
     // ViewModel utilities for Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     ksp(libs.androidx.lifecycle.compiler)
-
+    //Serialization
+    implementation(libs.kotlinx.serialization)
 
     //Hilt
     implementation(libs.hilt.android)

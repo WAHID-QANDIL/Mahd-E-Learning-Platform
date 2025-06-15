@@ -17,6 +17,9 @@ composeBom              = "2025.02.00"
 retrofit                = "2.9.0"
 roomCompiler            = "2.6.1"
 ksp                     = "2.0.21-1.0.28"
+serialization           = "1.8.1"
+#serialization-plugin    = "2.0.21"
+
 
 [libraries]
 androidx-core-splashscreen                      = { module = "androidx.core:core-splashscreen",                 version.ref = "coreSplashscreen" }
@@ -35,6 +38,7 @@ coil-network-okhttp                             = { module = "io.coil-kt.coil3:c
 hilt-android                                    = { module = "com.google.dagger:hilt-android",                  version.ref = "hiltAndroidCompiler" }
 hilt-android-compiler                           = { module = "com.google.dagger:hilt-android-compiler",         version.ref = "hiltAndroidCompiler" }
 retrofit                                        = { module = "com.squareup.retrofit2:retrofit",                 version.ref = "retrofit" }
+kotlinx-serialization                           = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",version.ref = "serialization" }
 androidx-core-ktx                               = { group = "androidx.core",                                    name = "core-ktx",                  version.ref = "coreKtx" }
 junit                                           = { group = "junit",                                            name = "junit",                     version.ref = "junit" }
 androidx-junit                                  = { group = "androidx.test.ext",                                name = "junit",                     version.ref = "junitVersion" }
@@ -52,8 +56,9 @@ androidx-material3                              = { group = "androidx.compose.ma
 
 
 [plugins]
-android-application                             = { id = "com.android.application",             version.ref = "agp" }
-kotlin-android                                  = { id = "org.jetbrains.kotlin.android",        version.ref = "kotlin" }
-kotlin-compose                                  = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-ksp                                             = { id = "com.google.devtools.ksp",             version.ref = "ksp" }
-dagger-hilt                                     = { id = "com.google.dagger.hilt.android",      version.ref = "hiltAndroidCompiler"}
+android-application                             = { id = "com.android.application",                     version.ref = "agp" }
+kotlin-android                                  = { id = "org.jetbrains.kotlin.android",                version.ref = "kotlin" }
+kotlin-compose                                  = { id = "org.jetbrains.kotlin.plugin.compose",         version.ref = "kotlin" }
+ksp                                             = { id = "com.google.devtools.ksp",                     version.ref = "ksp" }
+dagger-hilt                                     = { id = "com.google.dagger.hilt.android",              version.ref = "hiltAndroidCompiler"}
+serialization                                   = { id = "org.jetbrains.kotlin.plugin.serialization",   version.ref = "kotlin" }
