@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.welcome.forgot_password
+package org.mahd_e_learning_platform.presentation.screens.auth.forgot_password
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

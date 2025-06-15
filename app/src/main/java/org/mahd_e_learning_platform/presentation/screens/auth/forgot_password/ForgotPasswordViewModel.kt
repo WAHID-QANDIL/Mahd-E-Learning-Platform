@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.welcome.forgot_password
+package org.mahd_e_learning_platform.presentation.screens.auth.forgot_password
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

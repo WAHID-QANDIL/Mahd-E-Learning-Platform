@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.welcome.login
+package org.mahd_e_learning_platform.presentation.screens.auth.login
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

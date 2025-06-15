@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.home.component
+package org.mahd_e_learning_platform.presentation.common
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -7,7 +7,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
 
-enum class BottomNavItem(
+enum class AppBottomNavItem(
     val title: String,
     val icon: ImageVector,
 ) {

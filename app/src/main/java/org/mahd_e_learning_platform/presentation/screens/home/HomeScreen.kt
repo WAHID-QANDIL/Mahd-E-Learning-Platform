@@ -4,7 +4,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,25 +13,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.mahd_e_learning_platform.domain.model.Course
-import org.mahd_e_learning_platform.presentation.screens.home.component.BottomHomeNavBar
 import org.mahd_e_learning_platform.presentation.screens.home.component.CategoriesSection
 import org.mahd_e_learning_platform.presentation.screens.home.component.DefaultHomeCard
 import org.mahd_e_learning_platform.presentation.screens.home.component.HomeCurrentCourse
 import org.mahd_e_learning_platform.presentation.screens.home.component.HomeTopAppBar
 import org.mahd_e_learning_platform.presentation.screens.home.component.RecommendedCoursesSection
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
-import org.mahd_e_learning_platform.utils.homeBottomNavBarHeight
 import org.mahd_e_learning_platform.utils.recommendedCoursesSectionHeight
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -180,12 +174,12 @@ fun HomeScreen(
                 }
 
             }
-            BottomHomeNavBar(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .height(homeBottomNavBarHeight)
-            )
+//            BottomHomeNavBar(
+//                modifier = Modifier
+//                    .align(Alignment.BottomCenter)
+//                    .fillMaxWidth()
+//                    .height(homeBottomNavBarHeight)
+//            )
         }
 
     }

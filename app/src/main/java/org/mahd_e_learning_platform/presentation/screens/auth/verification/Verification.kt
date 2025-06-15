@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.welcome.verification
+package org.mahd_e_learning_platform.presentation.screens.auth.verification
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

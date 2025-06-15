@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.presentation.screens.welcome.verification
+package org.mahd_e_learning_platform.presentation.screens.auth.verification
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
