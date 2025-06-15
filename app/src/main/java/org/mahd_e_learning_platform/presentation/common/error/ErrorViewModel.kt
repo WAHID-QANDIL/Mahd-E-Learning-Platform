@@ -33,7 +33,7 @@ class ErrorViewModel : ViewModel() {
                 errorMessage = "The page you're looking for doesn't exist or has been moved.",
                 errorIcon = R.drawable.ic_page_not_found,
                 actions = listOf(
-                    ErrorAction("Go Home", ErrorActionType.PRIMARY, "GO_HOME")
+                    ErrorAction("Go Home", ErrorActionType.PRIMARY, ActionKey.GO_HOME)
                 )
             )
             ErrorType.NO_INTERNET -> ErrorUiState(
@@ -41,7 +41,7 @@ class ErrorViewModel : ViewModel() {
                 errorMessage = "Please check your internet connection and try again.",
                 errorIcon = R.drawable.ic_no_internet,
                 actions = listOf(
-                    ErrorAction("Retry Connection", ErrorActionType.PRIMARY, "RETRY_CONNECTION")
+                    ErrorAction("Retry Connection", ErrorActionType.PRIMARY, ActionKey.RETRY_CONNECTION)
                 )
             )
             ErrorType.SERVER_ERROR -> ErrorUiState(
@@ -51,8 +51,8 @@ class ErrorViewModel : ViewModel() {
                 errorCode = 500,
                 errorStatus = "Internal Server Error",
                 actions = listOf(
-                    ErrorAction("Try Again", ErrorActionType.PRIMARY, "TRY_AGAIN"),
-                    ErrorAction("Go Back", ErrorActionType.SECONDARY, "GO_BACK")
+                    ErrorAction("Try Again", ErrorActionType.PRIMARY, ActionKey.TRY_AGAIN),
+                    ErrorAction("Go Back", ErrorActionType.SECONDARY, ActionKey.GO_BACK)
                 )
             )
             ErrorType.REQUEST_TIMEOUT -> ErrorUiState(
@@ -60,7 +60,7 @@ class ErrorViewModel : ViewModel() {
                 errorMessage = "The request took too long to complete. Please try again.",
                 errorIcon = R.drawable.ic_request_timeout,
                 actions = listOf(
-                    ErrorAction("Try Again", ErrorActionType.PRIMARY, "TRY_AGAIN")
+                    ErrorAction("Try Again", ErrorActionType.PRIMARY, ActionKey.TRY_AGAIN)
                 )
             )
         }
