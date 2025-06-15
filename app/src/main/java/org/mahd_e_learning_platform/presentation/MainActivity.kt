@@ -5,18 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.mahd_e_learning_platform.R
-import org.mahd_e_learning_platform.presentation.screens.home.HomeScreen
-import org.mahd_e_learning_platform.presentation.screens.payment.EnrollmentSuccessScreen
-import org.mahd_e_learning_platform.presentation.screens.welcome.forgot_password.ForgotPasswordScreen
+import org.mahd_e_learning_platform.presentation.common.error.ErrorScreen
+import org.mahd_e_learning_platform.presentation.common.error.ErrorType
+import org.mahd_e_learning_platform.presentation.common.error.ErrorViewModel
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @AndroidEntryPoint
@@ -37,25 +36,26 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             MahdELearningPlatformTheme {
+                val viewModel: ErrorViewModel = hiltViewModel()
 
-//                ForgotPasswordScreen(
-//                    modifier = Modifier.fillMaxSize().systemBarsPadding(),
-////                    onBackToLogin = { /* Navigation logic will go here */ },
-////                    onBackClicked = { /* Navigation logic will go here */ }
-//                )
 
-//                HomeScreen(
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .systemBarsPadding()
-//                        .background(MahdELearningPlatformTheme.colors.background)
-//                )
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    EnrollmentSuccessScreen()
+
+                // ErrorType.SERVER_ERROR
+                // ErrorType.PAGE_NOT_FOUND
+                // ErrorType.NO_INTERNET
+                // ErrorType.REQUEST_TIMEOUT
+
+                LaunchedEffect(key1 = Unit) {
+                    viewModel.showError(ErrorType.SERVER_ERROR)
                 }
+
+                ErrorScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
+                    viewModel = viewModel
+                )
+
             }
         }
     }
