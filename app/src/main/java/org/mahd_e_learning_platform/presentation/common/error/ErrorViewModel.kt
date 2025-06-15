@@ -26,24 +26,6 @@ class ErrorViewModel : ViewModel() {
         }
     }
 
-    // A single handler for all button clicks from the error screen
-    fun onAction(actionKey: String) {
-        when (actionKey) {
-            "TRY_AGAIN", "RETRY_CONNECTION" -> {
-                // TODO: Implement logic to retry the failed operation
-            }
-            "GO_BACK" -> {
-                // TODO: Implement navigation to go back
-            }
-            "GO_HOME" -> {
-                // TODO: Implement navigation to the home screen
-            }
-            "CONTACT_SUPPORT" -> {
-                // TODO: Implement logic to contact support
-            }
-        }
-    }
-
     private fun createErrorState(type: ErrorType): ErrorUiState {
         return when (type) {
             ErrorType.PAGE_NOT_FOUND -> ErrorUiState(
@@ -90,4 +72,11 @@ enum class ErrorType {
     NO_INTERNET,
     SERVER_ERROR,
     REQUEST_TIMEOUT
+}
+enum class ActionKey {
+    TRY_AGAIN,
+    RETRY_CONNECTION,
+    GO_BACK,
+    GO_HOME,
+    CONTACT_SUPPORT
 }

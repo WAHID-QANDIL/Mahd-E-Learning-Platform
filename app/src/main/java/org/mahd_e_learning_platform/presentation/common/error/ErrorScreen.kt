@@ -17,13 +17,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @Composable
 fun ErrorScreen(
     modifier: Modifier = Modifier,
-    viewModel: ErrorViewModel = hiltViewModel()
+    viewModel: ErrorViewModel = hiltViewModel(),
+    navHostController: NavHostController
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
 
@@ -32,7 +34,20 @@ fun ErrorScreen(
         ErrorContent(
             modifier = modifier,
             uiState = it,
-            onAction = { actionKey -> viewModel.onAction(actionKey) }
+            onAction = { when (it) {
+                ActionKey.TRY_AGAIN, ActionKey.RETRY_CONNECTION -> {
+
+                }
+                ActionKey.GO_BACK  -> {
+
+                }
+                ActionKey.GO_HOME ->  {
+
+                }
+                ActionKey.CONTACT_SUPPORT -> {
+
+                }
+            } }
         )
     }
 }
@@ -41,7 +56,7 @@ fun ErrorScreen(
 fun ErrorContent(
     modifier: Modifier = Modifier,
     uiState: ErrorUiState,
-    onAction: (String) -> Unit
+    onAction: (ActionKey) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -55,7 +70,7 @@ fun ErrorContent(
         Card(
             shape = RoundedCornerShape(CornerSize(MahdELearningPlatformTheme.dimin.mediumPadding)),
             colors = CardDefaults.cardColors(containerColor = MahdELearningPlatformTheme.colors.white),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = MahdELearningPlatformTheme.dimin.smallPadding)
         ) {
             Column(
                 modifier = Modifier.padding(MahdELearningPlatformTheme.dimin.largePadding),
@@ -165,7 +180,7 @@ fun ErrorContent(
                     color = MahdELearningPlatformTheme.colors.subText,
                     textAlign = TextAlign.Center
                 )
-                TextButton(onClick = { onAction("CONTACT_SUPPORT") }) {
+                TextButton(onClick = { onAction(ActionKey.CONTACT_SUPPORT) }) {
                     Icon(imageVector = Icons.Default.Email, contentDescription = null, modifier = Modifier.size(ButtonDefaults.IconSize))
                     Spacer(Modifier.width(ButtonDefaults.IconSpacing))
                     Text(stringResource(R.string.contact_support))

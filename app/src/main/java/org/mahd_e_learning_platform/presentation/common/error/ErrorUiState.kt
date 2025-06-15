@@ -10,7 +10,7 @@ enum class ErrorActionType {
 data class ErrorAction(
     val text: String,
     val type: ErrorActionType,
-    val key: String // A unique key to identify the action in the ViewModel
+    val key: ActionKey // A unique key to identify the action in the ViewModel
 )
 
 // The enhanced, generic state for the error screen
