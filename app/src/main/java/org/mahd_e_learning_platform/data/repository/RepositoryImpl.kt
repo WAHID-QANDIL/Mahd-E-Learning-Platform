@@ -2,9 +2,6 @@ package org.mahd_e_learning_platform.data.repository
 
 import android.util.Log
 import jakarta.inject.Inject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.mahd_e_learning_platform.data.api.MahdApiService
 import org.mahd_e_learning_platform.data.source.remote.auth.SecureTokenStore
 import org.mahd_e_learning_platform.domain.repository.Repository
@@ -18,12 +15,8 @@ class RepositoryImpl @Inject constructor(
 
        val loginResponse =  mahdApiService.login(requestBody)
         loginResponse.accessToken?.let {
-            val scope = CoroutineScope(Dispatchers.IO)
-            scope.launch {
                 secureTokenStore.saveAccessToken(loginResponse.accessToken)
                 Log.d("accessToken", "accessToken: ${loginResponse.accessToken}")
-
-            }
         }
     }
 
