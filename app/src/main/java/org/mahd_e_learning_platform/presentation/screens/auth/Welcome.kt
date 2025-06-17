@@ -34,11 +34,11 @@ import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 fun WelcomeScreen(
     modifier: Modifier = Modifier,
     loginViewModel: LoginViewModel = hiltViewModel(),
-    createAccountViewModel: CreateAccountViewModel = hiltViewModel()
+    createAccountViewModel: CreateAccountViewModel = hiltViewModel(),
 ) {
 
-    val loginUiState = loginViewModel.uiState.collectAsStateWithLifecycle()
-    val createAccountUiState = createAccountViewModel.uiState.collectAsStateWithLifecycle()
+    val loginUiState = loginViewModel.uiState.collectAsStateWithLifecycle().value
+    val createAccountUiState = createAccountViewModel.uiState.collectAsStateWithLifecycle().value
 
     LazyColumn(
         modifier = modifier.background(
@@ -89,9 +89,14 @@ fun WelcomeScreen(
                 onEmailTextChange = { loginViewModel.onEmailTextChanged(it) },
                 onPasswordTextChange = { loginViewModel.onPasswordTextChanged(it) },
                 onChecked = { loginViewModel.isChecked(it) },
-                uiState = loginUiState.value,
+                uiState = loginUiState,
                 onForgetPasswordClicked = { loginViewModel.onForgetPassword() },
-                onSignIn = { loginViewModel.onSignIn() },
+                onSignIn = {
+                    loginViewModel.onSignIn(
+                        email = loginUiState.email,
+                        password = loginUiState.password
+                    )
+                },
             )
         }
         item {
@@ -100,13 +105,18 @@ fun WelcomeScreen(
         item {
             CreateAccountCard(
                 modifier = Modifier.padding(horizontal = MahdELearningPlatformTheme.dimin.mediumPadding),
-                uiState = createAccountUiState.value,
+                uiState = createAccountUiState,
                 onEmailTextChange = { createAccountViewModel.onEmailTextChanged(it) },
                 onPasswordTextChange = { createAccountViewModel.onPasswordTextChanged(it) },
                 onChecked = { createAccountViewModel.isChecked(it) },
-                onCreateAccount = { createAccountViewModel.onCreateAccount() },
+                onCreateAccount = { createAccountViewModel.onCreateAccount(
+                    firstName = createAccountUiState.firstName,
+                    lastName = createAccountUiState.lastName,
+                    email = createAccountUiState.email,
+                    password = createAccountUiState.password,
+                ) },
                 onFirstNameTextChange = { createAccountViewModel.onFirstNameChange(it) },
-                onLastNameTextChange = {createAccountViewModel.onLastNameChange(it)}
+                onLastNameTextChange = { createAccountViewModel.onLastNameChange(it) }
             )
         }
 
