@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.domain.model.Course
 import org.mahd_e_learning_platform.presentation.screens.home.component.CategoriesSection
 import org.mahd_e_learning_platform.presentation.screens.home.component.DefaultHomeCard
@@ -34,6 +35,7 @@ import org.mahd_e_learning_platform.utils.recommendedCoursesSectionHeight
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
+    navHostController: NavHostController
 ) {
     val uiState = homeViewModel.uiState.collectAsStateWithLifecycle()
     val student = uiState.value.student
@@ -118,54 +120,12 @@ fun HomeScreen(
                                 enrollments = 2,
                                 rate = 3.4f,
                                 cost = 33,
-                                courseId = TODO(),
-                                progress = TODO(),
-                                educator = TODO(),
-                                level = TODO(),
-                                sections = TODO(),
-                                category = TODO(),
-                            ),
-                            Course(
-                                courseImageUrl = "https://picsum.photos/200",
-                                courseTitle = "Complete React Course",
-                                courseDescription = "Build modern web applications",
-                                enrollments = 2,
-                                rate = 3.4f,
-                                cost = 33,
-                                courseId = TODO(),
-                                progress = TODO(),
-                                educator = TODO(),
-                                level = TODO(),
-                                sections = TODO(),
-                                category = TODO(),
-                            ),
-                            Course(
-                                courseImageUrl = "https://picsum.photos/200",
-                                courseTitle = "Complete React Course",
-                                courseDescription = "Build modern web applications",
-                                enrollments = 2,
-                                rate = 3.4f,
-                                cost = 33,
-                                courseId = TODO(),
-                                progress = TODO(),
-                                educator = TODO(),
-                                level = TODO(),
-                                sections = TODO(),
-                                category = TODO(),
-                            ),
-                            Course(
-                                courseImageUrl = "https://picsum.photos/200",
-                                courseTitle = "Complete React Course",
-                                courseDescription = "Build modern web applications",
-                                enrollments = 2,
-                                rate = 3.4f,
-                                cost = 33,
-                                courseId = TODO(),
-                                progress = TODO(),
-                                educator = TODO(),
-                                level = TODO(),
-                                sections = TODO(),
-                                category = TODO(),
+                                courseId = "TODO()",
+                                progress = 4f,
+                                educator = "TODO()",
+                                level = "TODO()",
+                                sections = emptyList(),
+                                category = "TODO",
                             ),
                         ),
                         onViewAll = { },
@@ -188,5 +148,5 @@ fun HomeScreen(
 @Preview
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+//    HomeScreen()
 }
