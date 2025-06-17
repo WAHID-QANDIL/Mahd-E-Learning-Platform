@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.presentation.screens.auth.create_account.CreateAccountCard
 import org.mahd_e_learning_platform.presentation.screens.auth.create_account.CreateAccountViewModel
@@ -35,6 +36,7 @@ fun WelcomeScreen(
     modifier: Modifier = Modifier,
     loginViewModel: LoginViewModel = hiltViewModel(),
     createAccountViewModel: CreateAccountViewModel = hiltViewModel(),
+    navHostController: NavHostController
 ) {
 
     val loginUiState = loginViewModel.uiState.collectAsStateWithLifecycle().value

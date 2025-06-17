@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
@@ -42,6 +43,7 @@ import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 fun ForgotPasswordScreen(
     modifier: Modifier = Modifier,
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
+    navHostController: NavHostController
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
