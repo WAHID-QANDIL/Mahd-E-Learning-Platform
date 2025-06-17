@@ -1,13 +1,10 @@
 package org.mahd_e_learning_platform.data.source.remote.auth
 
 import android.content.Context
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
 import android.util.Base64
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.security.crypto.MasterKey
 import kotlinx.coroutines.flow.map
 import java.security.KeyStore
 import javax.crypto.Cipher
@@ -21,19 +18,6 @@ class SecureTokenStore(private val context: Context) {
         private const val MASTER_KEY_ALIAS = "my_app_master_key"
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
     }
-
-
-    private val masterKey = MasterKey.Builder(context, MASTER_KEY_ALIAS)
-        .setKeyGenParameterSpec(
-            KeyGenParameterSpec.Builder(
-                MASTER_KEY_ALIAS,
-                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-            )
-                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                .setKeySize(256)
-                .build()
-        ).build()
 
     private val secretKey: SecretKey by lazy {
         val keyStore = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }

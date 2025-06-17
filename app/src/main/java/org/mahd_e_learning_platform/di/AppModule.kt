@@ -11,6 +11,9 @@ import org.mahd_e_learning_platform.data.repository.RepositoryImpl
 import org.mahd_e_learning_platform.data.source.remote.auth.AuthInterceptor
 import org.mahd_e_learning_platform.data.source.remote.auth.SecureTokenStore
 import org.mahd_e_learning_platform.domain.repository.Repository
+import org.mahd_e_learning_platform.domain.usecase.AuthUseCases
+import org.mahd_e_learning_platform.domain.usecase.Login
+import org.mahd_e_learning_platform.domain.usecase.Register
 import javax.inject.Singleton
 
 
@@ -40,6 +43,17 @@ object AppModule {
         mahdApiService: MahdApiService,
     ): Repository =
         RepositoryImpl(secureTokenStore = secureTokenStore, mahdApiService = mahdApiService)
+
+    @Provides
+    @Singleton
+    fun providesAuthUseCases(
+        repository: Repository
+    ): AuthUseCases  = AuthUseCases(
+        loginUseCase = Login(repository = repository),
+        registerUseCase = Register(repository = repository)
+    )
+
+
 
 
 }
