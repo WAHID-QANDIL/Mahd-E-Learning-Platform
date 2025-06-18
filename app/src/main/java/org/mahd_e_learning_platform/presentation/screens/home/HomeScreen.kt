@@ -41,7 +41,6 @@ fun HomeScreen(
     val student = uiState.value.student
     val currentCourse = uiState.value.course
     val recommendedCourses = uiState.value.recommendedCourses
-    val categoriesUiState = uiState.value.categoriesUiState
 
     MahdELearningPlatformTheme {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -63,7 +62,7 @@ fun HomeScreen(
                         onSearch = { },
                         onClickNotifications = { },
                         onAvatarClicked = { },
-                        studentName = student?.Fname ?: ""
+                        studentName = student?.firstName ?: ""
                     )
                 }
 
@@ -86,22 +85,20 @@ fun HomeScreen(
                 }
 
                 item {
-                    categoriesUiState?.let {
-                        CategoriesSection(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(MahdELearningPlatformTheme.dimin.largePadding),
-                            categories = 4,
-                            onProgrammingClick = { },
-                            onDesignClick = { },
-                            onBusinessClick = { },
-                            onPhotographyClick = { },
-                            programmingCourses = categoriesUiState.programming,
-                            designCourses = categoriesUiState.design,
-                            businessCourses = categoriesUiState.business,
-                            photographyCourses = categoriesUiState.photography
-                        )
-                    }
+                    CategoriesSection(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(MahdELearningPlatformTheme.dimin.largePadding),
+                        categories = 4,
+                        onProgrammingClick = { },
+                        onDesignClick = { },
+                        onBusinessClick = { },
+                        onPhotographyClick = { },
+//                            programmingCourses = categoriesUiState.programming,
+//                            designCourses = categoriesUiState.design,
+//                            businessCourses = categoriesUiState.business,
+//                            photographyCourses = categoriesUiState.photography
+                    )
 
                 }
                 item {
