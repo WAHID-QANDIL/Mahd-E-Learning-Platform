@@ -1,13 +1,25 @@
+import java.util.Properties
+import kotlin.apply
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.serialization)
 
 }
 
 android {
+
+    val secrets = Properties().apply {
+        File(rootDir, "secretes.properties")
+            .takeIf { it.exists() }
+            ?.inputStream()?.use { load(it) }
+    }
+
+
     namespace = "org.mahd_e_learning_platform"
     compileSdk = 35
 
@@ -28,20 +40,34 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASEURL",secrets.getProperty("BASEURL",""))
+        }
+    }
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASEURL",secrets.getProperty("BASEURL",""))
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
-}
 
+
+
+
+
+}
+kotlin {
+    jvmToolchain(17)
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -73,12 +99,15 @@ dependencies {
 
     //Retrofit
     implementation (libs.retrofit)
+    implementation (libs.logging.interceptor)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     // ViewModel utilities for Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     ksp(libs.androidx.lifecycle.compiler)
-
+    //Serialization
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.retrofit.kotlinx.serialization)
 
     //Hilt
     implementation(libs.hilt.android)
@@ -93,4 +122,5 @@ dependencies {
     //SplashScreen
     implementation(libs.androidx.core.splashscreen)
 
+    implementation(libs.androidx.security.crypto.ktx)
 }

@@ -89,7 +89,15 @@ fun MahdELearningPlatformTheme(
                 fontWeight = FontWeight.W400,
                 fontSize = 12.sp,
                 lineHeight = 14.06.sp
-            )
+            ),
+        headlineMedium =
+            TextStyle(
+                fontFamily = FontFamily.Default, // Replace with your custom font if needed
+                fontWeight = FontWeight.SemiBold, // Or your desired weight
+                fontSize = 28.sp, // Or your desired size
+                lineHeight = 36.sp, // Or your desired line height
+                letterSpacing = 0.sp // Or your desired letter spacing
+    )
     )
 
     val shapes =
