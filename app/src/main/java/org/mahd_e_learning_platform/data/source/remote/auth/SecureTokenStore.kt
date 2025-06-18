@@ -2,6 +2,7 @@ package org.mahd_e_learning_platform.data.source.remote.auth
 
 import android.content.Context
 import android.util.Base64
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -17,7 +18,16 @@ class SecureTokenStore(private val context: Context) {
     companion object {
         private const val MASTER_KEY_ALIAS = "my_app_master_key"
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
-        private val IS_LOGGED_IN = stringPreferencesKey("isFirstLaunch")
+        private val IS_LOGGED_IN = stringPreferencesKey("isLoggedIn")
+        private val IS_FIRST_LAUNCH = booleanPreferencesKey("isFirstLaunch")
+    }
+
+    @Volatile
+    private var cachedToken: String? = null
+
+    // Synchronous method for interceptors
+    fun getTokenSynchronously(): String? {
+        return cachedToken
     }
 
     private val secretKey: SecretKey by lazy {
@@ -42,15 +52,15 @@ class SecureTokenStore(private val context: Context) {
 
     suspend fun saveAccessToken(token: String) {
         val encrypted = encryptString(token, secretKey)
+        cachedToken = token
         context.dataStore.edit { prefs ->
             prefs[ACCESS_TOKEN_KEY] = encrypted
         }
     }
 
     suspend fun saveFirstLaunch(boolean: Boolean) {
-        val encrypted = encryptString(boolean.toString(), secretKey)
         context.dataStore.edit { prefs ->
-            prefs[IS_LOGGED_IN] = encrypted
+            prefs[IS_FIRST_LAUNCH] = boolean
         }
     }
 
