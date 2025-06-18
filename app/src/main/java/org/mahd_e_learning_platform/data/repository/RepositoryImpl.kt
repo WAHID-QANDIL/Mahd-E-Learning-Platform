@@ -3,28 +3,34 @@ package org.mahd_e_learning_platform.data.repository
 import android.util.Log
 import jakarta.inject.Inject
 import org.mahd_e_learning_platform.data.api.MahdApiService
+import org.mahd_e_learning_platform.data.exception.ExceptionHandler
 import org.mahd_e_learning_platform.data.source.remote.auth.SecureTokenStore
 import org.mahd_e_learning_platform.data.source.remote.model.RegisterRequest
 import org.mahd_e_learning_platform.domain.repository.Repository
 
 class RepositoryImpl @Inject constructor(
     private val secureTokenStore: SecureTokenStore,
-    private val mahdApiService: MahdApiService
+    private val mahdApiService: MahdApiService,
 ) : Repository {
     override suspend fun login(email: String, password: String) {
-        val requestBody = mapOf<String, String>("email" to email, "password" to password)
         try {
+            val requestBody = mapOf<String, String>("email" to email, "password" to password)
+            val loginResponse = mahdApiService.login(requestBody)
+            val token =
+                loginResponse.body()?.accessToken ?: throw ExceptionHandler.UnknownException();
 
-            val loginResponse =  mahdApiService.login(requestBody)
-            if (loginResponse.isSuccessful){
-                loginResponse.body()?.accessToken?.let {
-                    secureTokenStore.saveAccessToken(loginResponse.body()?.accessToken.toString())
-                    Log.d("accessToken", "accessToken: ${loginResponse.body()?.accessToken.toString()}")
-                }
-            }
-        }catch (e: Exception){
+            secureTokenStore.saveAccessToken(token)
+            Log.d(
+                "accessToken",
+                "accessToken: ${loginResponse.body()?.accessToken.toString()}"
+            )
+
+        } catch (
+            e: Exception,
+        ) {
             throw e
         }
+
 
     }
 
