@@ -1,5 +1,6 @@
 package org.mahd_e_learning_platform.presentation.common.error
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
@@ -8,8 +9,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -19,44 +22,71 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
+import org.mahd_e_learning_platform.data.exception.ExceptionHandler
+import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @Composable
 fun ErrorScreen(
     modifier: Modifier = Modifier,
     viewModel: ErrorViewModel = hiltViewModel(),
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    errorMessage: String? = null,
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
+    val ctx = LocalContext.current
 
     // The content will only be displayed when the uiState is not null
     uiState?.let {
         ErrorContent(
             modifier = modifier,
             uiState = it,
-            onAction = { when (it) {
-                ActionKey.TRY_AGAIN, ActionKey.RETRY_CONNECTION -> {
+            onAction = {
+                when (it) {
+                    ActionKey.TRY_AGAIN, ActionKey.RETRY_CONNECTION -> {
 
-                }
-                ActionKey.GO_BACK  -> {
+                    }
 
-                }
-                ActionKey.GO_HOME ->  {
+                    ActionKey.GO_BACK -> {
+                        navHostController.navigateUp()
+                    }
 
-                }
-                ActionKey.CONTACT_SUPPORT -> {
+                    ActionKey.GO_HOME -> {
+                        navHostController.navigate(Screen.Home.destination.rout)
+                    }
 
+                    ActionKey.CONTACT_SUPPORT -> {
+
+                    }
                 }
-            } }
+            }
         )
     }
+    LaunchedEffect(errorMessage) {
+        errorMessage?.let {
+            when (it){
+                ExceptionHandler.UnauthorizedException().message-> {
+                    Toast.makeText(
+                        ctx,
+                        "Invalid credentials. Please check your email or password.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            }
+
+
+        }
+
+    }
+
 }
 
 @Composable
 fun ErrorContent(
     modifier: Modifier = Modifier,
     uiState: ErrorUiState,
-    onAction: (ActionKey) -> Unit
+    onAction: (ActionKey) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -112,15 +142,25 @@ fun ErrorContent(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text("Error Code:", style = MahdELearningPlatformTheme.typography.bodyMedium)
-                            Text(uiState.errorCode.toString(), style = MahdELearningPlatformTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Text(
+                                "Error Code:",
+                                style = MahdELearningPlatformTheme.typography.bodyMedium
+                            )
+                            Text(
+                                uiState.errorCode.toString(),
+                                style = MahdELearningPlatformTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
                         Spacer(Modifier.height(MahdELearningPlatformTheme.dimin.smallPadding))
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text("Status:", style = MahdELearningPlatformTheme.typography.bodyMedium)
+                            Text(
+                                "Status:",
+                                style = MahdELearningPlatformTheme.typography.bodyMedium
+                            )
                             Text(
                                 uiState.errorStatus,
                                 style = MahdELearningPlatformTheme.typography.bodyMedium,
@@ -143,6 +183,7 @@ fun ErrorContent(
                                 Text(action.text)
                             }
                         }
+
                         ErrorActionType.SECONDARY -> {
                             OutlinedButton(
                                 onClick = { onAction(action.key) },
@@ -181,7 +222,11 @@ fun ErrorContent(
                     textAlign = TextAlign.Center
                 )
                 TextButton(onClick = { onAction(ActionKey.CONTACT_SUPPORT) }) {
-                    Icon(imageVector = Icons.Default.Email, contentDescription = null, modifier = Modifier.size(ButtonDefaults.IconSize))
+                    Icon(
+                        imageVector = Icons.Default.Email,
+                        contentDescription = null,
+                        modifier = Modifier.size(ButtonDefaults.IconSize)
+                    )
                     Spacer(Modifier.width(ButtonDefaults.IconSpacing))
                     Text(stringResource(R.string.contact_support))
                 }
