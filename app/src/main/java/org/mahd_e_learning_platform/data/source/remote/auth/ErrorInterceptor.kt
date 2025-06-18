@@ -2,6 +2,7 @@ package org.mahd_e_learning_platform.data.source.remote.auth
 
 import okhttp3.Interceptor
 import okhttp3.Response
+import org.mahd_e_learning_platform.data.exception.ExceptionHandler
 
 class ErrorInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -10,23 +11,12 @@ class ErrorInterceptor : Interceptor {
 
         if (!response.isSuccessful) {
             throw when (response.code) {
-                401 -> UnauthorizedException()
-                in 500..599 -> ServerErrorException(response.code)
-                else -> ApiException(response.code, response.message)
+                401 -> ExceptionHandler.UnauthorizedException()
+                in 500..599 -> ExceptionHandler.ServerErrorException()
+                else -> ExceptionHandler.UnknownException()
             }
         }
-
         return response
     }
-
-    private fun ApiException(i: Int, string: String): Nothing {
-        throw Exception("ApiException Code: $i, Message: $string")
-    }
-
-    private fun ServerErrorException(i: Int): Nothing {
-        throw Exception("ServerErrorException")
-    }
-
-    private fun UnauthorizedException(): Nothing = throw Exception("UnauthorizedException")
 
 }
