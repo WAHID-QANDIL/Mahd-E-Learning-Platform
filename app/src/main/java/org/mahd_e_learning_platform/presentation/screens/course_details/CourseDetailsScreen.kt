@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
@@ -32,7 +33,8 @@ import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 @Composable
 fun CourseDetailsScreen(
     modifier: Modifier = Modifier,
-    viewModel: CourseDetailsViewModel = hiltViewModel()
+    viewModel: CourseDetailsViewModel = hiltViewModel(),
+    navHostController: NavHostController
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
 
@@ -41,7 +43,7 @@ fun CourseDetailsScreen(
             TopAppBar(
                 title = { Text(stringResource(R.string.course_details)) },
                 navigationIcon = {
-                    IconButton(onClick = { viewModel.onNavigateBack() }) {
+                    IconButton(onClick = { navHostController.navigateUp() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },

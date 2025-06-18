@@ -27,8 +27,4 @@ class CourseDetailsViewModel : ViewModel() {
     fun onEnrollNow() {
         // TODO: Handle enrollment logic
     }
-
-    fun onNavigateBack() {
-        // TODO: Handle back navigation
-    }
 }
