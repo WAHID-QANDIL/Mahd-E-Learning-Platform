@@ -31,13 +31,11 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-
-    @Inject
-    lateinit var secureTokenStore: SecureTokenStore
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
-
+//        splashScreen.setKeepOnScreenCondition {
+//            false
+//        }
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(

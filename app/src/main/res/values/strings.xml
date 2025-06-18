@@ -59,4 +59,5 @@
     <string name="need_help_contact_support">Need help? Contact Support</string>
     <string name="need_help">Need Help?</string>
     <string name="if_this_problem_persists">If this problem persists, please contact our support team.</string>
+    <string name="course_details">Course Details</string>
 </resources>
