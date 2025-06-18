@@ -1,5 +1,6 @@
 package org.mahd_e_learning_platform.presentation.screens.auth.login
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,13 +44,25 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun onForgetPassword() {
-        //TODO
-    }
-
     fun onSignIn(email: String, password: String) {
         viewModelScope.launch {
-            authUseCases.loginUseCase(email = email, password = password)
+            try {
+                authUseCases.loginUseCase(email = email, password = password)
+                _uiState.update {
+                    it.copy(
+                        isSuccess = true
+                    )
+                }
+            } catch (e: Exception) {
+                _uiState.update {
+                    it.copy(
+                        error = e.toString()
+                    )
+                }
+                Log.d("onSignIn", "onSignIn: $e")
+
+            }
+
         }
     }
 
