@@ -17,6 +17,7 @@ class SecureTokenStore(private val context: Context) {
     companion object {
         private const val MASTER_KEY_ALIAS = "my_app_master_key"
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
+        private val IS_LOGGED_IN = stringPreferencesKey("isFirstLaunch")
     }
 
     private val secretKey: SecretKey by lazy {
@@ -33,12 +34,26 @@ class SecureTokenStore(private val context: Context) {
             }
         }
 
+    val accessLoginState = context.dataStore.data.map { prefs ->
+        prefs[IS_LOGGED_IN]?.let {
+            decryptString(it, secretKey)
+        }
+    }
+
     suspend fun saveAccessToken(token: String) {
         val encrypted = encryptString(token, secretKey)
         context.dataStore.edit { prefs ->
             prefs[ACCESS_TOKEN_KEY] = encrypted
         }
     }
+
+    suspend fun saveFirstLaunch(boolean: Boolean) {
+        val encrypted = encryptString(boolean.toString(), secretKey)
+        context.dataStore.edit { prefs ->
+            prefs[IS_LOGGED_IN] = encrypted
+        }
+    }
+
     private fun encryptString(plain: String, key: SecretKey): String {
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         cipher.init(Cipher.ENCRYPT_MODE, key)
