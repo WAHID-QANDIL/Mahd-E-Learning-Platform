@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -24,6 +25,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
+import org.mahd_e_learning_platform.data.exception.ExceptionHandler
+import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.presentation.screens.auth.create_account.CreateAccountCard
 import org.mahd_e_learning_platform.presentation.screens.auth.create_account.CreateAccountViewModel
 import org.mahd_e_learning_platform.presentation.screens.auth.login.LoginViewModel
@@ -36,7 +39,7 @@ fun WelcomeScreen(
     modifier: Modifier = Modifier,
     loginViewModel: LoginViewModel = hiltViewModel(),
     createAccountViewModel: CreateAccountViewModel = hiltViewModel(),
-    navHostController: NavHostController
+    navHostController: NavHostController,
 ) {
 
     val loginUiState = loginViewModel.uiState.collectAsStateWithLifecycle().value
@@ -92,7 +95,7 @@ fun WelcomeScreen(
                 onPasswordTextChange = { loginViewModel.onPasswordTextChanged(it) },
                 onChecked = { loginViewModel.isChecked(it) },
                 uiState = loginUiState,
-                onForgetPasswordClicked = { loginViewModel.onForgetPassword() },
+                onForgetPasswordClicked = { navHostController.navigate(Screen.ForgetPassword.destination.rout) },
                 onSignIn = {
                     loginViewModel.onSignIn(
                         email = loginUiState.email,
@@ -111,16 +114,41 @@ fun WelcomeScreen(
                 onEmailTextChange = { createAccountViewModel.onEmailTextChanged(it) },
                 onPasswordTextChange = { createAccountViewModel.onPasswordTextChanged(it) },
                 onChecked = { createAccountViewModel.isChecked(it) },
-                onCreateAccount = { createAccountViewModel.onCreateAccount(
-                    firstName = createAccountUiState.firstName,
-                    lastName = createAccountUiState.lastName,
-                    email = createAccountUiState.email,
-                    password = createAccountUiState.password,
-                ) },
+                onCreateAccount = {
+                    createAccountViewModel.onCreateAccount(
+                        firstName = createAccountUiState.firstName,
+                        lastName = createAccountUiState.lastName,
+                        email = createAccountUiState.email,
+                        password = createAccountUiState.password,
+                    )
+                },
                 onFirstNameTextChange = { createAccountViewModel.onFirstNameChange(it) },
                 onLastNameTextChange = { createAccountViewModel.onLastNameChange(it) }
             )
         }
 
     }
+    LaunchedEffect(key1 = loginUiState.error) {
+
+        if (!loginUiState.error.isNullOrEmpty()) {
+            when (loginUiState.error) {
+                ExceptionHandler.UnauthorizedException().message -> {
+                    navHostController.navigate(Screen.Error.destination.rout)
+                }
+
+                ExceptionHandler.ServerErrorException().message -> {
+                    navHostController.navigate(Screen.Error.destination.rout)
+                }
+
+                else -> navHostController.navigate(Screen.Error.destination.rout)
+            }
+        } else {
+            if (loginUiState.isSuccess) {
+                navHostController.navigate(Screen.Home.destination.rout)
+            }
+        }
+
+
+    }
+
 }

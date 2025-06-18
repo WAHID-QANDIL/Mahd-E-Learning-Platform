@@ -28,7 +28,7 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(authInterceptor)      // Applies auth header
-            .addInterceptor(ErrorInterceptor())
+//            .addInterceptor(ErrorInterceptor())
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY

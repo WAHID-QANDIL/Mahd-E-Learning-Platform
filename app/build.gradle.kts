@@ -41,11 +41,19 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "BASEURL",secrets.getProperty("BASEURL",""))
+            buildConfigField("String", "UMS_PORT_NUMBER",secrets.getProperty("UMS_PORT_NUMBER",""))
+            buildConfigField("String", "CHATBOT_PORT_NUMBER",secrets.getProperty("CHATBOT_PORT_NUMBER",""))
+            buildConfigField("String", "CMS_PORT_NUMBER",secrets.getProperty("CMS_PORT_NUMBER",""))
+            buildConfigField("String", "PAYMENT_PORT_NUMBER",secrets.getProperty("PAYMENT_PORT_NUMBER",""))
         }
     }
     buildTypes {
         debug {
             buildConfigField("String", "BASEURL",secrets.getProperty("BASEURL",""))
+            buildConfigField("String", "UMS_PORT_NUMBER",secrets.getProperty("UMS_PORT_NUMBER",""))
+            buildConfigField("String", "CHATBOT_PORT_NUMBER",secrets.getProperty("CHATBOT_PORT_NUMBER",""))
+            buildConfigField("String", "CMS_PORT_NUMBER",secrets.getProperty("CMS_PORT_NUMBER",""))
+            buildConfigField("String", "PAYMENT_PORT_NUMBER",secrets.getProperty("PAYMENT_PORT_NUMBER",""))
         }
     }
     compileOptions {

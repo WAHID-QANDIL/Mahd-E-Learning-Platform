@@ -22,16 +22,20 @@ import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.presentation.common.HorizontalPagerIndicator
+import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.presentation.screens.onboarding.component.FinishButton
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 import org.mahd_e_learning_platform.utils.OnBoarding
 import org.mahd_e_learning_platform.utils.onBoardingImagehight
 
 @Composable
-fun OnBoarding(modifier: Modifier = Modifier) {
+fun OnBoarding(
+    modifier: Modifier = Modifier,
+    navHostController: NavHostController,
+) {
     val pages = listOf(
         OnBoarding.First,
         OnBoarding.Second
@@ -64,7 +68,7 @@ fun OnBoarding(modifier: Modifier = Modifier) {
                     pagerState = pagerState,
                     modifier = Modifier.fillMaxWidth(fraction = MahdELearningPlatformTheme.dimin.largeFraction)
                 ) {
-                    //TODO
+                    navHostController.navigate(Screen.Welcome.destination.rout)
                 }
             }
 
