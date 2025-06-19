@@ -11,12 +11,12 @@ sealed class OnBoarding(
 ) {
 
     data object First:OnBoarding(
-        image = R.drawable.screen1,
+        image = R.drawable.onboarding1,
         title = "learn anything anywhere",
         description = "discover thousands of courses and expand your knowledge with our interactive learning platform"
     )
     data object Second:OnBoarding(
-        image = R.drawable.screen2,
+        image = R.drawable.onboarding2,
         title = "Welcome to Mahd",
         description = "Discover thousands of courses and unlock your potential with personalized learning experiences."
     )
