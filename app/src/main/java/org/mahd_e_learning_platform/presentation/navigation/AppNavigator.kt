@@ -9,6 +9,7 @@ import org.mahd_e_learning_platform.presentation.common.error.ErrorScreen
 import org.mahd_e_learning_platform.presentation.screens.auth.WelcomeScreen
 import org.mahd_e_learning_platform.presentation.screens.auth.forgot_password.ForgotPasswordScreen
 import org.mahd_e_learning_platform.presentation.screens.home.HomeScreen
+import org.mahd_e_learning_platform.presentation.screens.onboarding.OnBoarding
 
 
 @Composable
@@ -45,6 +46,11 @@ fun AppNavigator(
         }
         composable(route = Screen.Error.destination.rout) {
             ErrorScreen(
+                navHostController = navHostController
+            )
+        }
+        composable(route = Screen.OnBoarding.destination.rout) {
+            OnBoarding(
                 navHostController = navHostController
             )
         }
