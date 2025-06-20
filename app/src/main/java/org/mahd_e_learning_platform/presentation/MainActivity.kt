@@ -21,9 +21,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.mahd_e_learning_platform.R
-import org.mahd_e_learning_platform.data.source.remote.auth.SecureTokenStore
+import org.mahd_e_learning_platform.data.source.local.datastore.SecureTokenStore
 import org.mahd_e_learning_platform.presentation.navigation.AppNavigator
 import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
