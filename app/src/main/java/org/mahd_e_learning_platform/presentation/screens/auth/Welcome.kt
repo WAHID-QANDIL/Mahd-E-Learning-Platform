@@ -1,5 +1,6 @@
 package org.mahd_e_learning_platform.presentation.screens.auth
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -104,8 +105,10 @@ fun WelcomeScreen(
                 onSignIn = {
                     loginViewModel.onSignIn(
                         email = loginUiState.email,
-                        password = loginUiState.password
+                        password = loginUiState.password,
+                        onSuccess = { navHostController.navigate(Screen.Home.destination.rout) }
                     )
+                    Log.d("WelcomeScreen", "WelcomeScreen: ${loginUiState.isSuccess}")
                 },
             )
         }
