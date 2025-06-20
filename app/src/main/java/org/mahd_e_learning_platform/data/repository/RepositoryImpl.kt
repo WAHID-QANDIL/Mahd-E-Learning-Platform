@@ -16,15 +16,13 @@ class RepositoryImpl @Inject constructor(
         try {
             val requestBody = mapOf<String, String>("email" to email, "password" to password)
             val loginResponse = mahdApiService.login(requestBody)
-            val token =
-                loginResponse.body()?.accessToken ?: throw ExceptionHandler.UnknownException();
+            val token = loginResponse.body()?.accessToken ?: throw ExceptionHandler.UnknownException();
 
             secureTokenStore.saveAccessToken(token)
             Log.d(
                 "accessToken",
                 "accessToken: ${loginResponse.body()?.accessToken.toString()}"
             )
-
         } catch (
             e: Exception,
         ) {

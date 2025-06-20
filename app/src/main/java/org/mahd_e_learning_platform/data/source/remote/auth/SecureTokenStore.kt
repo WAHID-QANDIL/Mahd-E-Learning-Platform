@@ -1,6 +1,8 @@
 package org.mahd_e_learning_platform.data.source.remote.auth
 
 import android.content.Context
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
 import android.util.Base64
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -9,6 +11,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.map
 import java.security.KeyStore
 import javax.crypto.Cipher
+import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
 
@@ -32,8 +35,32 @@ class SecureTokenStore(private val context: Context) {
 
     private val secretKey: SecretKey by lazy {
         val keyStore = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
-        val entry = keyStore.getEntry(MASTER_KEY_ALIAS, null) as KeyStore.SecretKeyEntry
-        entry.secretKey
+
+        if (!keyStore.containsAlias(MASTER_KEY_ALIAS)) {
+            // Generate a new key if it doesn't exist
+            val keyGenerator = KeyGenerator.getInstance(
+                KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore"
+            )
+            keyGenerator.init(
+                KeyGenParameterSpec.Builder(
+                    MASTER_KEY_ALIAS,
+                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+                )
+                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                    .setKeySize(256)
+                    .build()
+            )
+            keyGenerator.generateKey()
+        }
+
+        val entry = keyStore.getEntry(MASTER_KEY_ALIAS, null)
+        if (entry is KeyStore.SecretKeyEntry) {
+            entry.secretKey
+
+        }else{
+            throw IllegalStateException("No secret key found for alias: $MASTER_KEY_ALIAS")
+        }
     }
 
 
@@ -51,7 +78,7 @@ class SecureTokenStore(private val context: Context) {
     }
 
     val accessFirstLaunchState = context.dataStore.data.map { prefs ->
-        prefs[IS_FIRST_LAUNCH] ?: true
+        prefs[IS_FIRST_LAUNCH] == false
     }
 
     suspend fun saveAccessToken(token: String) {
