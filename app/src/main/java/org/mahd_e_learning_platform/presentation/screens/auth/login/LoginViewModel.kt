@@ -44,7 +44,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun onSignIn(email: String, password: String) {
+    fun onSignIn(email: String, password: String,onSuccess:()-> Unit) {
         viewModelScope.launch {
             try {
                 authUseCases.loginUseCase(email = email, password = password)
@@ -53,6 +53,7 @@ class LoginViewModel @Inject constructor(
                         isSuccess = true
                     )
                 }
+                onSuccess()
             } catch (e: Exception) {
                 _uiState.update {
                     it.copy(
