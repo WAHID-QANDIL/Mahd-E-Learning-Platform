@@ -1,19 +1,18 @@
-package org.mahd_e_learning_platform.data.source.remote.auth
+package org.mahd_e_learning_platform.data.source.local.datastore
 
 import android.content.Context
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
-import android.util.Base64
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.map
 import java.security.KeyStore
-import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
-import javax.crypto.spec.GCMParameterSpec
+import org.mahd_e_learning_platform.utils.decryptString
+import org.mahd_e_learning_platform.utils.encryptString
 
 val Context.dataStore by preferencesDataStore(name = "secure_datastore")
 
@@ -64,12 +63,12 @@ class SecureTokenStore(private val context: Context) {
     }
 
 
-    val accessTokenFlow = context.dataStore.data
-        .map { prefs ->
-            prefs[ACCESS_TOKEN_KEY]?.let { encryptedBase64 ->
-                decryptString(encryptedBase64, secretKey)
-            }
-        }
+//    val accessTokenFlow = context.dataStore.data
+//        .map { prefs ->
+//            prefs[ACCESS_TOKEN_KEY]?.let { encryptedBase64 ->
+//                decryptString(encryptedBase64, secretKey)
+//            }
+//        }
 
     val accessLoginState = context.dataStore.data.map { prefs ->
         prefs[IS_LOGGED_IN]?.let {
@@ -95,24 +94,6 @@ class SecureTokenStore(private val context: Context) {
         }
     }
 
-    private fun encryptString(plain: String, key: SecretKey): String {
-        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
-        cipher.init(Cipher.ENCRYPT_MODE, key)
-        val iv = cipher.iv                                   // 12‑byte random nonce
-        val ciphertext = cipher.doFinal(plain.toByteArray())
-        val combined = iv + ciphertext                        // IV needs to be saved alongside data
-        return Base64.encodeToString(combined, Base64.NO_WRAP) // single‑line Base64
-    }
-
-    private fun decryptString(encrypted: String, key: SecretKey): String {
-        val combined = Base64.decode(encrypted, Base64.NO_WRAP)
-        val iv = combined.copyOfRange(0, 12)
-        val ciphertext = combined.copyOfRange(12, combined.size)
-        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
-        cipher.init(Cipher.DECRYPT_MODE, key, GCMParameterSpec(128, iv))
-        val plainBytes = cipher.doFinal(ciphertext)
-        return String(plainBytes)
-    }
 
 
 }
