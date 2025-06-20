@@ -37,13 +37,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
+import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @Composable
 fun ForgotPasswordScreen(
     modifier: Modifier = Modifier,
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
-    navHostController: NavHostController
+    navHostController: NavHostController,
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -52,7 +53,11 @@ fun ForgotPasswordScreen(
         uiState = uiState.value,
         onEmailTextChange = { viewModel.onEmailTextChanged(it) },
         onSendResetLink = { viewModel.onSendResetLink() },
-        onBackToLogin = { viewModel.onBackToLogin() },
+        onBackToLogin = {
+            navHostController.navigate(Screen.Welcome.destination.rout) {
+                popUpTo(0)
+            }
+        },
         onContactSupport = { viewModel.onContactSupport() }
     )
 }

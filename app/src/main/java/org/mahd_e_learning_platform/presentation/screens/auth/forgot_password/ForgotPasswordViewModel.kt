@@ -22,9 +22,7 @@ class ForgotPasswordViewModel: ViewModel() {
         //TODO: Handle password reset link logic
     }
 
-    fun onBackToLogin() {
-        //TODO: Handle navigation back to login
-    }
+
     fun onContactSupport() {
         //TODO: Handle navigation back to login
     }
