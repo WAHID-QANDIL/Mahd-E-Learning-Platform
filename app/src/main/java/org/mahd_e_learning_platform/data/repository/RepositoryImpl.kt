@@ -4,14 +4,19 @@ import android.util.Log
 import jakarta.inject.Inject
 import org.mahd_e_learning_platform.data.api.MahdApiService
 import org.mahd_e_learning_platform.data.exception.ExceptionHandler
-import org.mahd_e_learning_platform.data.source.remote.auth.SecureTokenStore
-import org.mahd_e_learning_platform.data.source.remote.model.RegisterRequest
+import org.mahd_e_learning_platform.data.source.local.datastore.SecureTokenStore
+import org.mahd_e_learning_platform.data.source.local.db.MahdDatabase
+import org.mahd_e_learning_platform.data.source.local.db.model.StudentEntity
+import org.mahd_e_learning_platform.data.api.model.RegisterRequest
+import org.mahd_e_learning_platform.data.api.model.UserProfile
 import org.mahd_e_learning_platform.domain.repository.Repository
 
 class RepositoryImpl @Inject constructor(
     private val secureTokenStore: SecureTokenStore,
     private val mahdApiService: MahdApiService,
+    database: MahdDatabase,
 ) : Repository {
+    private val studentDao = database.getStudentDao()
     override suspend fun login(email: String, password: String) {
         try {
             val requestBody = mapOf<String, String>("email" to email, "password" to password)
@@ -24,7 +29,6 @@ class RepositoryImpl @Inject constructor(
                 "accessToken",
                 "accessToken: ${loginResponse.body()?.accessToken.toString()}"
             )
-
         } catch (
             e: Exception,
         ) {
@@ -35,14 +39,21 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun register(registerRequest: RegisterRequest) {
-        mahdApiService.register(
-            registerRequest = mapOf(
-                "firstName" to registerRequest.firstName,
-                "lastName" to registerRequest.lastName,
-                "email" to registerRequest.email,
-                "password" to registerRequest.password,
-                "role" to registerRequest.role,
-            )
+        val student = mapOf(
+            "firstName" to registerRequest.firstName,
+            "lastName" to registerRequest.lastName,
+            "email" to registerRequest.email,
+            "password" to registerRequest.password,
+            "role" to registerRequest.role,
         )
+        mahdApiService.register(
+            registerRequest = student
+        )
+
     }
+
+    override suspend fun getUserProfile(): UserProfile = mahdApiService.getUserProfile()
+
+    override suspend fun updateUserProfile(newUserInfo: Map<String, String>) =
+        mahdApiService.updateUserProfile(newUserInfo = newUserInfo)
 }

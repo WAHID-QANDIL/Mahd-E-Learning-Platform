@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.data.source.remote.model
+package org.mahd_e_learning_platform.data.api.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

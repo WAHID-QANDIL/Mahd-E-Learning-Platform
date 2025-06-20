@@ -14,6 +14,7 @@ import javax.inject.Singleton
 import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
 import org.mahd_e_learning_platform.data.api.MahdApiService
+import org.mahd_e_learning_platform.data.source.local.datastore.SecureTokenStore
 import org.mahd_e_learning_platform.data.source.remote.auth.ErrorInterceptor
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 
@@ -24,16 +25,25 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        authInterceptor: AuthInterceptor,
+        secureTokenStore: SecureTokenStore
     ): OkHttpClient {
+        var token: String? = secureTokenStore.getTokenSynchronously()
         return OkHttpClient.Builder()
-            .addInterceptor(authInterceptor)      // Applies auth header
+//            .addInterceptor(authInterceptor)      // Applies auth header
 //            .addInterceptor(ErrorInterceptor())
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             )
+            .addNetworkInterceptor { chain->
+                val originalRequest = chain.request()
+                val newRequest = originalRequest
+                    .newBuilder()
+                    .header("Authorization", "Bearer $token")
+                    .build()
+                chain.proceed(newRequest)
+            }
             // Logs everything
             .connectTimeout(30, TimeUnit.SECONDS) // Network timeouts
             .readTimeout(30, TimeUnit.SECONDS)

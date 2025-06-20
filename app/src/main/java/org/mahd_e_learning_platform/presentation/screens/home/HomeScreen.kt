@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.domain.model.Course
+import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.presentation.screens.home.component.CategoriesSection
 import org.mahd_e_learning_platform.presentation.screens.home.component.DefaultHomeCard
 import org.mahd_e_learning_platform.presentation.screens.home.component.HomeCurrentCourse
@@ -35,7 +36,7 @@ import org.mahd_e_learning_platform.utils.recommendedCoursesSectionHeight
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    navHostController: NavHostController
+    navHostController: NavHostController,
 ) {
     val uiState = homeViewModel.uiState.collectAsStateWithLifecycle()
     val student = uiState.value.student
@@ -61,7 +62,7 @@ fun HomeScreen(
                         avatarUrl = "https://picsum.photos/200",
                         onSearch = { },
                         onClickNotifications = { },
-                        onAvatarClicked = { },
+                        onAvatarClicked = { navHostController.navigate(Screen.Profile.destination.rout) },
                         studentName = student?.firstName ?: ""
                     )
                 }
