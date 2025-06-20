@@ -11,7 +11,8 @@ enum class RoutingDestinations {
     MY_COURSES,
     OTP_VER,
     SEARCH,
-    ERROR
+    ERROR,
+    ONBOARDING,
 }
 
 typealias routs = RoutingDestinations
@@ -33,4 +34,5 @@ sealed class Screen(val destination: Destination) {
     data object OtpVerification : Screen(Destination(rout = routs.OTP_VER.name))
     data object Search : Screen(Destination(rout = routs.SEARCH.name))
     data object Error : Screen(Destination(rout = routs.ERROR.name))
+    data object OnBoarding : Screen(Destination(rout = routs.ONBOARDING.name))
 }

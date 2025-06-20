@@ -31,6 +31,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var secureTokenStore: SecureTokenStore
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
 //        splashScreen.setKeepOnScreenCondition {
@@ -50,13 +52,20 @@ class MainActivity : ComponentActivity() {
                 val navHostController = rememberNavController()
                 var isLoading by remember { mutableStateOf(true) }
                 var isLoggedIn by remember { mutableStateOf(false) }
+                var isFirstLaunch by remember { mutableStateOf(true) }
                 splashScreen.setKeepOnScreenCondition { isLoading }
 
 
                 LaunchedEffect(Unit) {
                     isLoggedIn = secureTokenStore.accessLoginState.first().toBoolean()
+                    isFirstLaunch = secureTokenStore.accessFirstLaunchState.first()
                     Log.d("isLoggedIn", "onCreate: $isLoggedIn")
-                    if (isLoggedIn) {
+                    Log.d("isLoggedIn", "onCreate: $isFirstLaunch")
+                    if (isFirstLaunch) {
+                        navHostController.navigate(Screen.OnBoarding.destination.rout) {
+                            popUpTo(0)
+                        }
+                    } else if (isLoggedIn) {
                         navHostController.navigate(Screen.Home.destination.rout) {
                             popUpTo(0)
                         }
@@ -76,5 +85,13 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        CoroutineScope(Dispatchers.Main).launch {
+            secureTokenStore.saveFirstLaunch(false)
+        }
+
     }
 }

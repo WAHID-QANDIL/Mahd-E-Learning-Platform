@@ -6,9 +6,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
@@ -16,9 +18,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.LinearGradient
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -97,35 +104,56 @@ fun OnBoardingScreenContent(
             )
         )
     ) {
-
-        Column(
-            modifier = modifier.padding(MahdELearningPlatformTheme.dimin.mediumPadding),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Box(modifier = Modifier.fillMaxWidth()) {}
+        Box(modifier = Modifier.fillMaxSize()) {
             Image(
                 painter = painterResource(onBoarding.image), contentDescription = stringResource(
                     R.string.onboarding
                 ),
                 modifier = Modifier
-                    .fillMaxWidth(fraction = MahdELearningPlatformTheme.dimin.largeFraction)
-                    .height(onBoardingImagehight)
-            )
-            Spacer(modifier = Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
+                    .fillMaxSize()
+                    .graphicsLayer { alpha = 0.99f }
+                    .drawWithContent {
+                        val colors = listOf(Color.Black, Color.Transparent)
+                        drawContent()
+                        drawRect(
+                            brush = Brush.linearGradient(
+                                colors = colors
 
-            Text(
-                onBoarding.title,
-                fontSize = MaterialTheme.typography.bodyLarge.fontSize,
-                color = Color.White
+                            ),
+                        )
+
+
+                    },
+
+                contentScale = ContentScale.Crop
             )
-            Spacer(modifier = Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
-            Text(
-                onBoarding.description,
-                style = MahdELearningPlatformTheme.typography.bodySmall,
-                color = MahdELearningPlatformTheme.colors.subText,
-                textAlign = TextAlign.Center
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.TopCenter)
+                    .statusBarsPadding(),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    onBoarding.title,
+                    style = MahdELearningPlatformTheme.typography.titleLarge,
+                    color = Color.White,
+                )
+                Spacer(modifier = Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
+                Text(
+                    onBoarding.description,
+                    style = MahdELearningPlatformTheme.typography.bodyMedium,
+                    color = MahdELearningPlatformTheme.colors.subText,
+                    textAlign = TextAlign.Center
+                )
+
+
+            }
+
+
         }
+
+
     }
 }

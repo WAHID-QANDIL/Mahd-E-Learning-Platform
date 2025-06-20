@@ -50,6 +50,10 @@ class SecureTokenStore(private val context: Context) {
         }
     }
 
+    val accessFirstLaunchState = context.dataStore.data.map { prefs ->
+        prefs[IS_FIRST_LAUNCH] ?: true
+    }
+
     suspend fun saveAccessToken(token: String) {
         val encrypted = encryptString(token, secretKey)
         cachedToken = token
