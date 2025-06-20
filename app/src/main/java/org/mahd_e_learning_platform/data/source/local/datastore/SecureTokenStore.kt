@@ -8,11 +8,11 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.map
+import org.mahd_e_learning_platform.utils.decryptString
+import org.mahd_e_learning_platform.utils.encryptString
 import java.security.KeyStore
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
-import org.mahd_e_learning_platform.utils.decryptString
-import org.mahd_e_learning_platform.utils.encryptString
 
 val Context.dataStore by preferencesDataStore(name = "secure_datastore")
 
@@ -57,7 +57,7 @@ class SecureTokenStore(private val context: Context) {
         if (entry is KeyStore.SecretKeyEntry) {
             entry.secretKey
 
-        }else{
+        } else {
             throw IllegalStateException("No secret key found for alias: $MASTER_KEY_ALIAS")
         }
     }
@@ -77,7 +77,7 @@ class SecureTokenStore(private val context: Context) {
     }
 
     val accessFirstLaunchState = context.dataStore.data.map { prefs ->
-        prefs[IS_FIRST_LAUNCH] == false
+        prefs[IS_FIRST_LAUNCH] ?: true
     }
 
     suspend fun saveAccessToken(token: String) {
@@ -93,7 +93,6 @@ class SecureTokenStore(private val context: Context) {
             prefs[IS_FIRST_LAUNCH] = boolean
         }
     }
-
 
 
 }

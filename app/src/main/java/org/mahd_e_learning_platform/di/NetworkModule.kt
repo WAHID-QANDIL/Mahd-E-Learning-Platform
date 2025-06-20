@@ -4,19 +4,17 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.mahd_e_learning_platform.BuildConfig
+import org.mahd_e_learning_platform.data.api.MahdApiService
 import org.mahd_e_learning_platform.data.source.remote.auth.AuthInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import kotlinx.serialization.json.Json
-import okhttp3.logging.HttpLoggingInterceptor
-import org.mahd_e_learning_platform.data.api.MahdApiService
-import org.mahd_e_learning_platform.data.source.local.datastore.SecureTokenStore
-import org.mahd_e_learning_platform.data.source.remote.auth.ErrorInterceptor
-import retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -25,25 +23,24 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        secureTokenStore: SecureTokenStore
+        authInterceptor: AuthInterceptor
     ): OkHttpClient {
-        var token: String? = secureTokenStore.getTokenSynchronously()
         return OkHttpClient.Builder()
-//            .addInterceptor(authInterceptor)      // Applies auth header
+            .addInterceptor(authInterceptor)      // Applies auth header
 //            .addInterceptor(ErrorInterceptor())
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             )
-            .addNetworkInterceptor { chain->
-                val originalRequest = chain.request()
-                val newRequest = originalRequest
-                    .newBuilder()
-                    .header("Authorization", "Bearer $token")
-                    .build()
-                chain.proceed(newRequest)
-            }
+//            .addNetworkInterceptor { chain->
+//                val originalRequest = chain.request()
+//                val newRequest = originalRequest
+//                    .newBuilder()
+//                    .header("Authorization", "Bearer $token")
+//                    .build()
+//                chain.proceed(newRequest)
+//            }
             // Logs everything
             .connectTimeout(30, TimeUnit.SECONDS) // Network timeouts
             .readTimeout(30, TimeUnit.SECONDS)
