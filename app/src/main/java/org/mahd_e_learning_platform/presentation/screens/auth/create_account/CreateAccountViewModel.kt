@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.mahd_e_learning_platform.data.source.remote.model.RegisterRequest
+import org.mahd_e_learning_platform.data.api.model.RegisterRequest
 import org.mahd_e_learning_platform.domain.usecase.AuthUseCases
 import javax.inject.Inject
 @HiltViewModel
