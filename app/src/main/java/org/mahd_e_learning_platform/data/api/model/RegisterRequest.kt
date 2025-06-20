@@ -1,4 +1,4 @@
-package org.mahd_e_learning_platform.data.source.remote.model
+package org.mahd_e_learning_platform.data.api.model
 
 data class RegisterRequest(
     val firstName: String,
