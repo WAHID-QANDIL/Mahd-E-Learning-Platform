@@ -95,7 +95,12 @@ fun WelcomeScreen(
                 onPasswordTextChange = { loginViewModel.onPasswordTextChanged(it) },
                 onChecked = { loginViewModel.isChecked(it) },
                 uiState = loginUiState,
-                onForgetPasswordClicked = { navHostController.navigate(Screen.ForgetPassword.destination.rout) },
+                onForgetPasswordClicked = {
+                    navHostController.navigate(Screen.ForgetPassword.destination.rout) {
+                        popUpTo(0)
+
+                    }
+                },
                 onSignIn = {
                     loginViewModel.onSignIn(
                         email = loginUiState.email,
