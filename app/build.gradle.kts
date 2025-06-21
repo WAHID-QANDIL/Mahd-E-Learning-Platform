@@ -77,7 +77,10 @@ kotlin {
     jvmToolchain(17)
 }
 dependencies {
-
+    // ... other dependencies
+    implementation("androidx.compose.material:material-icons-core-android:1.7.0") // Use the latest version
+    implementation("androidx.compose.material:material-icons-extended-android:1.7.0") // For all icons, or use the core one for a smaller set
+    implementation("androidx.compose.material3:material3-android:1.3.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
