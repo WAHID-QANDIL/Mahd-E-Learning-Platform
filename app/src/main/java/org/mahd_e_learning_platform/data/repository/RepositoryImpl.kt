@@ -21,8 +21,9 @@ class RepositoryImpl @Inject constructor(
             val requestBody = mapOf<String, String>("email" to email, "password" to password)
             val loginResponse = mahdApiService.login(requestBody)
             val token =
-                loginResponse.body()?.accessToken ?: throw ExceptionHandler.ServerErrorException();
-
+                loginResponse.body()?.accessToken ?: throw ExceptionHandler.ServerErrorException(
+                    "Failed to retrieve access token. Response body: ${loginResponse.body()?.toString()}"
+                );
             secureTokenStore.saveAccessToken(token)
             Log.d(
                 "accessToken",
