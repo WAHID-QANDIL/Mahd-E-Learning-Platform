@@ -4,7 +4,6 @@ enum class RoutingDestinations {
     HOME,
     FORGET_PASSWORD,
     WELCOME,
-    DETAILS,
     PROFILE,
     PAYMENT,
     COURSE_CONTENT,
@@ -36,6 +35,6 @@ sealed class Screen(val destination: Destination) {
     data object Error : Screen(Destination(rout = routs.ERROR.name))
     data object OnBoarding : Screen(Destination(rout = routs.ONBOARDING.name))
     data object CourseOverview : Screen(Destination(rout = routs.COURSE_OVERVIEW.name)){
-        fun passCourseId(courseId: String) = "${routs.DETAILS.name}/$courseId"
+        fun passCourseId(courseId: String) = "${routs.COURSE_OVERVIEW.name}/$courseId"
     }
 }
