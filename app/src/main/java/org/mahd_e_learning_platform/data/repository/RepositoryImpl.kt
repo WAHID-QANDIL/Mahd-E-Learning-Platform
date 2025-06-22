@@ -52,7 +52,6 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun getUserProfile(): UserProfile {
-        Log.d("getUserProfile", "getUserProfile: ${secureTokenStore.getTokenSynchronously()}")
        val response =  mahdApiService.getUserProfile().body()?: throw Exception("Cant get user profile linked with this email.")
         return UserProfile(
             id = response.id,
