@@ -14,10 +14,15 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @Composable
-fun AppBottomHomeNavBar(modifier: Modifier = Modifier) {
+fun AppBottomHomeNavBar(
+    modifier: Modifier = Modifier,
+    navHostController: NavHostController,
+) {
     MahdELearningPlatformTheme {
         var selected by rememberSaveable { mutableIntStateOf(0) }
         Row(modifier = modifier.background(MahdELearningPlatformTheme.colors.background)) {
@@ -44,7 +49,19 @@ fun AppBottomHomeNavBar(modifier: Modifier = Modifier) {
                         },
                         label = { Text(item.title) },
                         selected = selected == index,
-                        onClick = { selected = index }
+                        onClick = {
+                            selected = index
+                            val targetRoute = when (selected) {
+                                0 -> Screen.Home.destination.rout
+                                1 -> Screen.Search.destination.rout
+                                2 -> Screen.MyCourses.destination.rout
+                                3 -> Screen.Profile.destination.rout
+                                else -> return@NavigationBarItem
+                            }
+                            if (navHostController.currentDestination?.route != targetRoute) {
+                                navHostController.navigate(targetRoute)
+                            }
+                        }
                     )
                 }
             }
