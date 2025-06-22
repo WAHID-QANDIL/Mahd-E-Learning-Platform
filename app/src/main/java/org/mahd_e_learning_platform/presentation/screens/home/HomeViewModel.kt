@@ -3,8 +3,6 @@ package org.mahd_e_learning_platform.presentation.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -13,10 +11,11 @@ import org.mahd_e_learning_platform.data.source.local.datastore.SecureTokenStore
 import org.mahd_e_learning_platform.domain.model.Student
 import org.mahd_e_learning_platform.domain.usecase.ProfileUseCases
 import javax.inject.Inject
+
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     profileUseCases: ProfileUseCases,
-    secureTokenStore: SecureTokenStore
+    secureTokenStore: SecureTokenStore,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -37,7 +36,7 @@ class HomeViewModel @Inject constructor(
                 )
             }
         }
-        CoroutineScope(Dispatchers.Default).launch {
+        viewModelScope.launch {
             secureTokenStore.saveLoginState(true)
         }
     }
