@@ -93,7 +93,8 @@ fun CreateAccountCard(
                         label = {
                             Text(
                                 text = stringResource(R.string.first_name),
-                                style = MahdELearningPlatformTheme.typography.bodyLarge
+                                style = MahdELearningPlatformTheme.typography.bodyLarge,
+                                color = MahdELearningPlatformTheme.colors.text
                             )
                         },
                         colors = TextFieldDefaults.colors(
@@ -118,7 +119,8 @@ fun CreateAccountCard(
                         label = {
                             Text(
                                 text = stringResource(R.string.last_name),
-                                style = MahdELearningPlatformTheme.typography.bodyLarge
+                                style = MahdELearningPlatformTheme.typography.bodyLarge,
+                                color = MahdELearningPlatformTheme.colors.text
                             )
                         },
                         colors = TextFieldDefaults.colors(
@@ -141,7 +143,8 @@ fun CreateAccountCard(
                 label = {
                     Text(
                         text = stringResource(R.string.email_address),
-                        style = MahdELearningPlatformTheme.typography.bodyLarge
+                        style = MahdELearningPlatformTheme.typography.bodyLarge,
+                        color = MahdELearningPlatformTheme.colors.text
                     )
                 },
                 leadingIcon = {
@@ -168,9 +171,18 @@ fun CreateAccountCard(
                 label = {
                     Text(
                         text = stringResource(R.string.password),
-                        style = MahdELearningPlatformTheme.typography.bodyLarge
+                        style = MahdELearningPlatformTheme.typography.bodyLarge,
+                        color = MahdELearningPlatformTheme.colors.text
                     )
                 },
+                colors = TextFieldDefaults.colors(
+                    unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor,
+                    focusedIndicatorColor = MahdELearningPlatformTheme.colors.primary,
+                    cursorColor = MahdELearningPlatformTheme.colors.primary,
+                    focusedContainerColor = Color.White, // Set focused background to white
+                    unfocusedContainerColor = Color.White, // Set unfocused background to white
+                    disabledContainerColor = Color.White // Optionally, set disabled background to white
+                ),
                 leadingIcon = {
                     Icon(
                         Icons.Default.Lock,
