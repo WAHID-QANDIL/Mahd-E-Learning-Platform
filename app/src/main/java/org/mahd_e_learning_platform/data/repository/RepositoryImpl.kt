@@ -21,7 +21,7 @@ class RepositoryImpl @Inject constructor(
             val requestBody = mapOf<String, String>("email" to email, "password" to password)
             val loginResponse = mahdApiService.login(requestBody)
             val token =
-                loginResponse.body()?.accessToken ?: throw ExceptionHandler.UnknownException();
+                loginResponse.body()?.accessToken ?: throw ExceptionHandler.ServerErrorException();
 
             secureTokenStore.saveAccessToken(token)
             Log.d(
@@ -52,6 +52,7 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun getUserProfile(): UserProfile {
+        Log.d("getUserProfile", "getUserProfile: ${secureTokenStore.getTokenSynchronously()}")
        val response =  mahdApiService.getUserProfile().body()?: throw Exception("Cant get user profile linked with this email.")
         return UserProfile(
             id = response.id,
