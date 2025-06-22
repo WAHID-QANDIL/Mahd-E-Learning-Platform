@@ -126,8 +126,14 @@ fun HomeScreen(
                                 category = "TODO",
                             ),
                         ),
-                        onViewAll = { },
-                        onCourseClicked = {}
+                        onViewAll = { navHostController.navigate(Screen.Search.destination.rout) },
+                        onCourseClicked = {
+                            navHostController.navigate(
+                                Screen.CourseOverview.passCourseId(
+                                    it
+                                )
+                            )
+                        }
                     )
                 }
 
