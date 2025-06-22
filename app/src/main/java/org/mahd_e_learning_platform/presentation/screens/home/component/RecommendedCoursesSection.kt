@@ -60,7 +60,7 @@ fun RecommendedCoursesSection(
                     course = courses[index],
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable(onClick = { onCourseClicked(courses[index].courseTitle) })
+                        .clickable(onClick = { onCourseClicked(courses[index].courseId) })
                 )
                 Spacer(Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
             }

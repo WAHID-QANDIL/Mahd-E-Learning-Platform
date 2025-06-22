@@ -7,7 +7,9 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
 import org.mahd_e_learning_platform.utils.decryptString
 import org.mahd_e_learning_platform.utils.encryptString
 import java.security.KeyStore
@@ -20,7 +22,7 @@ class SecureTokenStore(private val context: Context) {
     companion object {
         private const val MASTER_KEY_ALIAS = "my_app_master_key"
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
-        private val IS_LOGGED_IN = stringPreferencesKey("isLoggedIn")
+        private val IS_LOGGED_IN = booleanPreferencesKey("isLoggedIn")
         private val IS_FIRST_LAUNCH = booleanPreferencesKey("isFirstLaunch")
     }
 
@@ -28,8 +30,25 @@ class SecureTokenStore(private val context: Context) {
     private var cachedToken: String? = null
 
     // Synchronous method for interceptors
-    fun getTokenSynchronously(): String? {
-        return cachedToken
+    fun getTokenSynchronously(): String {
+        cachedToken?.let {
+            return it
+        }
+        val token = runBlocking {
+            context.dataStore.data.map { prefs ->
+                prefs[ACCESS_TOKEN_KEY]?.let {
+                    decryptString(it, secretKey)
+                } ?: ""
+            }.first()
+        }
+        cachedToken = token
+        return token
+    }
+
+    val tokenFlow = context.dataStore.data.map { prefs ->
+        prefs[ACCESS_TOKEN_KEY]?.let {
+            decryptString(it,secretKey)
+        }?:""
     }
 
     private val secretKey: SecretKey by lazy {
@@ -71,9 +90,11 @@ class SecureTokenStore(private val context: Context) {
 //        }
 
     val accessLoginState = context.dataStore.data.map { prefs ->
-        prefs[IS_LOGGED_IN]?.let {
-            decryptString(it, secretKey)
-        }
+        prefs[IS_LOGGED_IN] ?: false
+    }
+
+    suspend fun saveLoginState(state: Boolean) = context.dataStore.edit { prefs ->
+        prefs[IS_LOGGED_IN] = state
     }
 
     val accessFirstLaunchState = context.dataStore.data.map { prefs ->

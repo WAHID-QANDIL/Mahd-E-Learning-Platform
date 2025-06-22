@@ -42,13 +42,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
-    viewModel: ProfileViewModel = hiltViewModel()
+    viewModel: ProfileViewModel = hiltViewModel(),
+    navHostController: NavHostController
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
 
@@ -57,7 +59,7 @@ fun ProfileScreen(
             TopAppBar(
                 title = { Text("Profile") },
                 navigationIcon = {
-                    IconButton(onClick = { viewModel.onNavigateBack() }) {
+                    IconButton(onClick = { navHostController.navigateUp() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },

@@ -38,7 +38,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.mahd_e_learning_platform.R
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 import java.util.concurrent.TimeUnit
@@ -46,9 +48,8 @@ import java.util.concurrent.TimeUnit
 @Composable
 fun VerificationScreen(
     modifier: Modifier = Modifier,
-    viewModel: VerificationViewModel,
-    onBackClicked: () -> Unit,
-    onVerifyCode: () -> Unit
+    viewModel: VerificationViewModel = hiltViewModel(),
+    navHostController: NavHostController,
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
 
@@ -59,7 +60,7 @@ fun VerificationScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            IconButton(onClick = onBackClicked) {
+            IconButton(onClick = { navHostController.navigateUp() }) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(R.string.back)
@@ -100,7 +101,10 @@ fun VerificationScreen(
         val minutes = TimeUnit.SECONDS.toMinutes(uiState.remainingSeconds.toLong())
         val seconds = uiState.remainingSeconds % 60
         Text(
-            text = stringResource(R.string.code_expires_in, String.format("%02d:%02d", minutes, seconds)),
+            text = stringResource(
+                R.string.code_expires_in,
+                String.format("%02d:%02d", minutes, seconds)
+            ),
             style = MahdELearningPlatformTheme.typography.bodyLarge,
             color = MahdELearningPlatformTheme.colors.primary
         )
@@ -124,7 +128,7 @@ fun VerificationScreen(
 
 
         Button(
-            onClick = onVerifyCode,
+            onClick = { viewModel.onVerifyCode() },
             modifier = Modifier.fillMaxWidth(),
             enabled = uiState.otpCode.length == 6,
             shape = RoundedCornerShape(corner = CornerSize(MahdELearningPlatformTheme.dimin.smallPadding)),

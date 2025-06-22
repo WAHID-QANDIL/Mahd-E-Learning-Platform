@@ -7,12 +7,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.mahd_e_learning_platform.data.source.local.datastore.SecureTokenStore
 import org.mahd_e_learning_platform.domain.model.Student
 import org.mahd_e_learning_platform.domain.usecase.ProfileUseCases
 import javax.inject.Inject
+
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     profileUseCases: ProfileUseCases,
+    secureTokenStore: SecureTokenStore,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -32,6 +35,9 @@ class HomeViewModel @Inject constructor(
                     )
                 )
             }
+        }
+        viewModelScope.launch {
+            secureTokenStore.saveLoginState(true)
         }
     }
 
