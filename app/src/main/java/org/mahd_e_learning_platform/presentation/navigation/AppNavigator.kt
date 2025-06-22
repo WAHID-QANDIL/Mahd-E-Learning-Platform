@@ -68,13 +68,6 @@ fun AppNavigator(
             )
         }
 
-        composable(route = Screen.Profile.destination.rout) {
-            ProfileScreen(
-                modifier = modifier,
-                navHostController = navHostController
-            )
-        }
-
         composable(route = Screen.OtpVerification.destination.rout) {
             VerificationScreen(
                 modifier = modifier,
