@@ -59,7 +59,13 @@ fun AppBottomHomeNavBar(
                                 else -> return@NavigationBarItem
                             }
                             if (navHostController.currentDestination?.route != targetRoute) {
-                                navHostController.navigate(targetRoute)
+                                navHostController.navigate(targetRoute) {
+                                    popUpTo(navHostController.graph.startDestinationId) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
                             }
                         }
                     )
