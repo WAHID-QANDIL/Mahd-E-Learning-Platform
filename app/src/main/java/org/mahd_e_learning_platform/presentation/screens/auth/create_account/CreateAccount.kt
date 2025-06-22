@@ -18,6 +18,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
@@ -26,6 +27,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.mahd_e_learning_platform.R
@@ -95,8 +97,13 @@ fun CreateAccountCard(
                             )
                         },
                         colors = TextFieldDefaults.colors(
-                            unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor
-                        )
+                            unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor,
+                            focusedIndicatorColor = MahdELearningPlatformTheme.colors.primary,
+                            cursorColor = MahdELearningPlatformTheme.colors.primary,
+                            focusedContainerColor = Color.White, // Set focused background to white
+                            unfocusedContainerColor = Color.White, // Set unfocused background to white
+                            disabledContainerColor = Color.White // Optionally, set disabled background to white
+                        ),
                     )
                 }
                 Column(
@@ -115,7 +122,12 @@ fun CreateAccountCard(
                             )
                         },
                         colors = TextFieldDefaults.colors(
-                            unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor
+                            unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor,
+                            focusedIndicatorColor = MahdELearningPlatformTheme.colors.primary,
+                            cursorColor = MahdELearningPlatformTheme.colors.primary,
+                            focusedContainerColor = Color.White, // Set focused background to white
+                            unfocusedContainerColor = Color.White, // Set unfocused background to white
+                            disabledContainerColor = Color.White // Optionally, set disabled background to white
                         )
                     )
                 }
@@ -123,6 +135,7 @@ fun CreateAccountCard(
             Spacer(Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
             OutlinedTextField(
                 value = uiState.email,
+                modifier = Modifier.fillMaxWidth(),
                 onValueChange = onEmailTextChange,
                 placeholder = { Text(stringResource(R.string.enter_your_email)) },
                 label = {
@@ -138,12 +151,18 @@ fun CreateAccountCard(
                     )
                 },
                 colors = TextFieldDefaults.colors(
-                    unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor
+                    unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor,
+                    focusedIndicatorColor = MahdELearningPlatformTheme.colors.primary,
+                    cursorColor = MahdELearningPlatformTheme.colors.primary,
+                    focusedContainerColor = Color.White, // Set focused background to white
+                    unfocusedContainerColor = Color.White, // Set unfocused background to white
+                    disabledContainerColor = Color.White // Optionally, set disabled background to white
                 )
             )
             Spacer(Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
             OutlinedTextField(
                 value = uiState.password,
+                modifier = Modifier.fillMaxWidth(),
                 onValueChange = onPasswordTextChange,
                 placeholder = { Text(text = stringResource(R.string.enter_your_password)) },
                 label = {
@@ -169,7 +188,10 @@ fun CreateAccountCard(
             ) {
                 Checkbox(
                     checked = uiState.isRemembered,
-                    onCheckedChange = onChecked
+                    onCheckedChange = onChecked,
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = MahdELearningPlatformTheme.colors.primary
+                    )
                 )
                 Text(
                     text = stringResource(R.string.i_agree_to_the_terms_of_service_and_privacy_policy),
@@ -187,7 +209,7 @@ fun CreateAccountCard(
                     horizontal = MahdELearningPlatformTheme.dimin.largePadding,
                     vertical = MahdELearningPlatformTheme.dimin.mediumPadding
                 ),
-                modifier = Modifier.fillMaxWidth(fraction = MahdELearningPlatformTheme.dimin.largeFraction)
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(
                     text = stringResource(R.string.create_account),

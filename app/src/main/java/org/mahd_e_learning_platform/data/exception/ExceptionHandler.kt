@@ -4,9 +4,10 @@ sealed class ExceptionHandler(message: String) : Exception(message) {
     class UnauthorizedException :
         ExceptionHandler(message = "Invalid credentials. Please check your email or password.")
 
-    class ServerErrorException :
-        ExceptionHandler(message = "Server is unavailable, please, try again later")
+    // In your ExceptionHandler.kt or wherever ServerErrorExcepiton is defined
+    class ServerErrorException(message: String? = null) : Exception(message) {
 
+    }
     class UnknownException :
         ExceptionHandler(message = "Unknown error occurred")
 
