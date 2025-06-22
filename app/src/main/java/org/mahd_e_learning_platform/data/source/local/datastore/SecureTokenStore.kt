@@ -45,6 +45,12 @@ class SecureTokenStore(private val context: Context) {
         return token
     }
 
+    val tokenFlow = context.dataStore.data.map { prefs ->
+        prefs[ACCESS_TOKEN_KEY]?.let {
+            decryptString(it,secretKey)
+        }?:""
+    }
+
     private val secretKey: SecretKey by lazy {
         val keyStore = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
 
