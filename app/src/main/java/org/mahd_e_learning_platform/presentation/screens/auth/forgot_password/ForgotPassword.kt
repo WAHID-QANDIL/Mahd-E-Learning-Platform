@@ -30,6 +30,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -83,15 +84,7 @@ fun ForgotPasswordCard(
                 .padding(MahdELearningPlatformTheme.dimin.largePadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Back Arrow
-            Row(modifier = Modifier.fillMaxWidth()) {
-                IconButton(onClick = onBackToLogin) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back)
-                    )
-                }
-            }
+
 
             Spacer(Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
 
@@ -131,7 +124,8 @@ fun ForgotPasswordCard(
                 label = {
                     Text(
                         text = stringResource(R.string.email_address),
-                        style = MahdELearningPlatformTheme.typography.bodyLarge
+                        style = MahdELearningPlatformTheme.typography.bodyLarge,
+                        color = MahdELearningPlatformTheme.colors.text
                     )
                 },
                 trailingIcon = {
@@ -141,7 +135,12 @@ fun ForgotPasswordCard(
                     )
                 },
                 colors = TextFieldDefaults.colors(
-                    unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor
+                    unfocusedIndicatorColor = MahdELearningPlatformTheme.colors.textFieldIndicatorColor,
+                    focusedIndicatorColor = MahdELearningPlatformTheme.colors.primary,
+                    cursorColor = MahdELearningPlatformTheme.colors.primary,
+                    focusedContainerColor = Color.White, // Set focused background to white
+                    unfocusedContainerColor = Color.White, // Set unfocused background to white
+                    disabledContainerColor = Color.White // Optionally, set disabled background to white
                 ),
                 singleLine = true
             )
@@ -170,10 +169,14 @@ fun ForgotPasswordCard(
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = null,
-                    modifier = Modifier.size(ButtonDefaults.IconSize)
+                    modifier = Modifier.size(ButtonDefaults.IconSize),
+                    tint = MahdELearningPlatformTheme.colors.primary
                 )
                 Spacer(Modifier.width(ButtonDefaults.IconSpacing))
-                Text(text = stringResource(R.string.back_to_login))
+                Text(
+                    text = stringResource(R.string.back_to_login),
+                    color = MahdELearningPlatformTheme.colors.primary
+                )
             }
             Spacer(Modifier.weight(1f)) // Pushes content below to the bottom
 

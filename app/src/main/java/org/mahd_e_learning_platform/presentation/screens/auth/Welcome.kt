@@ -65,15 +65,19 @@ fun WelcomeScreen(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Spacer(Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
                 Image(
                     painter = painterResource(R.drawable.app_logo),
                     contentDescription = stringResource(R.string.app_name),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.size(
-                        60.dp,
-                        65.dp
+                        100.dp,
+                        80.dp
                     )
                 )
+
+                    Spacer(Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
+
                 Text(
                     text = stringResource(R.string.welcome),
                     style = MahdELearningPlatformTheme.typography.titleLarge,
