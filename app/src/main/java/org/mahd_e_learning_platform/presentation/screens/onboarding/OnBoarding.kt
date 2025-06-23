@@ -13,16 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.LinearGradient
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
@@ -36,7 +33,6 @@ import org.mahd_e_learning_platform.presentation.navigation.Screen
 import org.mahd_e_learning_platform.presentation.screens.onboarding.component.FinishButton
 import org.mahd_e_learning_platform.ui.theme.MahdELearningPlatformTheme
 import org.mahd_e_learning_platform.utils.OnBoarding
-import org.mahd_e_learning_platform.utils.onBoardingImagehight
 
 @Composable
 fun OnBoarding(
@@ -130,23 +126,26 @@ fun OnBoardingScreenContent(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .align(Alignment.TopCenter)
+                    .align(Alignment.Center) // This aligns the Column itself at the top center of its parent Box
                     .statusBarsPadding(),
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
+                verticalArrangement = Arrangement.Center, // This centers children vertically if Column has a fixed height or enough space
+                horizontalAlignment = Alignment.CenterHorizontally // This centers children horizontally within the Column
             ) {
                 Text(
-                    onBoarding.title,
+                    text = onBoarding.title, // It's good practice to explicitly name parameters
                     style = MahdELearningPlatformTheme.typography.titleLarge,
                     color = Color.White,
+                    textAlign = TextAlign.Center // Add this if the title can wrap
                 )
                 Spacer(modifier = Modifier.height(MahdELearningPlatformTheme.dimin.mediumPadding))
                 Text(
-                    onBoarding.description,
+                    modifier = Modifier.padding(horizontal = MahdELearningPlatformTheme.dimin.smallPadding),
+                    text = onBoarding.description, // Explicitly name parameters
                     style = MahdELearningPlatformTheme.typography.bodyMedium,
-                    color = MahdELearningPlatformTheme.colors.subText,
-                    textAlign = TextAlign.Center
+                    color = MahdELearningPlatformTheme.colors.white,
+                    textAlign = TextAlign.Center // This is already correctly set
                 )
+            }
 
 
             }
@@ -156,4 +155,4 @@ fun OnBoardingScreenContent(
 
 
     }
-}
+
