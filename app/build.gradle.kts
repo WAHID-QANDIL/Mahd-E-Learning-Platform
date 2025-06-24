@@ -1,5 +1,4 @@
 import java.util.Properties
-import kotlin.apply
 
 plugins {
     alias(libs.plugins.android.application)
@@ -45,6 +44,7 @@ android {
             buildConfigField("String", "CHATBOT_PORT_NUMBER",secrets.getProperty("CHATBOT_PORT_NUMBER",""))
             buildConfigField("String", "CMS_PORT_NUMBER",secrets.getProperty("CMS_PORT_NUMBER",""))
             buildConfigField("String", "PAYMENT_PORT_NUMBER",secrets.getProperty("PAYMENT_PORT_NUMBER",""))
+            buildConfigField("String", "RECOMMENDATION_PORT_NUMBER",secrets.getProperty("RECOMMENDATION_PORT_NUMBER",""))
         }
     }
     buildTypes {
@@ -54,6 +54,7 @@ android {
             buildConfigField("String", "CHATBOT_PORT_NUMBER",secrets.getProperty("CHATBOT_PORT_NUMBER",""))
             buildConfigField("String", "CMS_PORT_NUMBER",secrets.getProperty("CMS_PORT_NUMBER",""))
             buildConfigField("String", "PAYMENT_PORT_NUMBER",secrets.getProperty("PAYMENT_PORT_NUMBER",""))
+            buildConfigField("String", "RECOMMENDATION_PORT_NUMBER",secrets.getProperty("RECOMMENDATION_PORT_NUMBER",""))
         }
     }
     compileOptions {

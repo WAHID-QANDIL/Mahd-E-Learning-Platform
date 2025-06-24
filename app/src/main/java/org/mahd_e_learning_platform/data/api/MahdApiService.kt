@@ -3,6 +3,7 @@ package org.mahd_e_learning_platform.data.api
 import org.mahd_e_learning_platform.BuildConfig
 import org.mahd_e_learning_platform.data.api.model.LoginResponse
 import org.mahd_e_learning_platform.data.api.model.UserProfile
+import org.mahd_e_learning_platform.data.source.remote.model.Course
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,5 +24,7 @@ interface MahdApiService {
     @PUT("${BuildConfig.BASEURL}${BuildConfig.UMS_PORT_NUMBER}api/v1/ums/user/profile")
     suspend fun updateUserProfile(@Body newUserInfo: Map<String, String>)
 
+    @GET("${BuildConfig.BASEURL}${BuildConfig.RECOMMENDATION_PORT_NUMBER}recommendation/top5")
+    suspend fun getRecommendedCourses(): Response<List<Course>>
 
 }

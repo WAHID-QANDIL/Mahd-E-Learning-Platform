@@ -2,12 +2,15 @@ package org.mahd_e_learning_platform.data.repository
 
 import android.util.Log
 import jakarta.inject.Inject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import org.mahd_e_learning_platform.data.api.MahdApiService
 import org.mahd_e_learning_platform.data.api.model.RegisterRequest
 import org.mahd_e_learning_platform.data.api.model.UserProfile
 import org.mahd_e_learning_platform.data.exception.ExceptionHandler
 import org.mahd_e_learning_platform.data.source.local.datastore.SecureTokenStore
 import org.mahd_e_learning_platform.data.source.local.db.MahdDatabase
+import org.mahd_e_learning_platform.domain.model.Course
 import org.mahd_e_learning_platform.domain.repository.Repository
 
 class RepositoryImpl @Inject constructor(
@@ -20,8 +23,12 @@ class RepositoryImpl @Inject constructor(
         try {
             val requestBody = mapOf<String, String>("email" to email, "password" to password)
             val loginResponse = mahdApiService.login(requestBody)
-            val token = loginResponse.body()?.accessToken ?: throw ExceptionHandler.ServerErrorException(
-                    "Failed to retrieve access token. Response body: ${loginResponse.body()?.toString()}" );
+            val token =
+                loginResponse.body()?.accessToken ?: throw ExceptionHandler.ServerErrorException(
+                    "Failed to retrieve access token. Response body: ${
+                        loginResponse.body()?.toString()
+                    }"
+                );
             secureTokenStore.saveAccessToken(token)
             Log.d(
                 "accessToken",
@@ -51,7 +58,8 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun getUserProfile(): UserProfile {
-       val response =  mahdApiService.getUserProfile().body()?: throw Exception("Cant get user profile linked with this email.")
+        val response = mahdApiService.getUserProfile().body()
+            ?: throw Exception("Cant get user profile linked with this email.")
         return UserProfile(
             id = response.id,
             firstName = response.firstName,
@@ -64,4 +72,26 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun updateUserProfile(newUserInfo: Map<String, String>) =
         mahdApiService.updateUserProfile(newUserInfo = newUserInfo)
+
+    override suspend fun getRecommendedCourses(): Flow<List<Course>> = flow {
+        val response = mahdApiService.getRecommendedCourses()
+        try {
+            if (response.isSuccessful) {
+                val course = response.body()
+                course?.let {
+                    emit(
+                        it.map { course->
+                            course.toDomain()
+                        }
+                    )
+                } ?: emit(emptyList())
+
+            } else {
+                emit(emptyList())
+            }
+
+        }catch (e: Exception){
+            throw e
+        }
+    }
 }
